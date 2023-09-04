@@ -5,6 +5,36 @@ namespace R5T.L0053
 {
     public static class Instances
     {
-		
+        public static IAssemblyFileNameOperator AssemblyFileNameOperator => L0053.AssemblyFileNameOperator.Instance;
+        public static IAssemblyFilePathOperator AssemblyFilePathOperator => L0053.AssemblyFilePathOperator.Instance;
+        public static IAssemblyOperator AssemblyOperator => L0053.AssemblyOperator.Instance;
+        public static IBuiltInTypes BuiltInTypes => L0053.BuiltInTypes.Instance;
+        public static ICommandLineArgumentsOperator CommandLineArgumentsOperator => L0053.CommandLineArgumentsOperator.Instance;
+        public static Z0000.ICharacters Characters => Z0000.Characters.Instance;
+        public static IDirectorySeparators DirectorySeparators => L0053.DirectorySeparators.Instance;
+        public static IDocumentationFileNameOperator DocumentationFileNameOperator => L0053.DocumentationFileNameOperator.Instance;
+        public static IDocumentationFilePathOperator DocumentationFilePathOperator => L0053.DocumentationFilePathOperator.Instance;
+        public static IEnumerableOperator EnumerableOperator => L0053.EnumerableOperator.Instance;
+        public static IEnumerationUnderlyingTypes EnumerationUnderlyingTypes => L0053.EnumerationUnderlyingTypes.Instance;
+        public static IExceptionMessageOperator ExceptionMessageOperator => L0053.ExceptionMessageOperator.Instance;
+        public static IExceptionOperator ExceptionOperator => L0053.ExceptionOperator.Instance;
+        public static IExecutablePathOperator ExecutablePathOperator => L0053.ExecutablePathOperator.Instance;
+        public static IExitCodeOperator ExitCodeOperator => L0053.ExitCodeOperator.Instance;
+        public static IExitCodes ExitCodes => L0053.ExitCodes.Instance;
+        public static IFileExtensionOperator FileExtensionOperator => L0053.FileExtensionOperator.Instance;
+        public static IFileExtensions FileExtensions => L0053.FileExtensions.Instance;
+        public static IFileNameOperator FileNameOperator => L0053.FileNameOperator.Instance;
+        public static IFileModeOperator FileModeOperator => L0053.FileModeOperator.Instance;
+        public static IFileSystemOperator FileSystemOperator => L0053.FileSystemOperator.Instance;
+        public static IIndexOperator IndexOperator => L0053.IndexOperator.Instance;
+        public static IIndices Indices => L0053.Indices.Instance;
+        public static IIntegralTypes IntegralTypes => L0053.IntegralTypes.Instance;
+        public static IMessages Messages => L0053.Messages.Instance;
+        public static IPathOperator PathOperator => L0053.PathOperator.Instance;
+        public static ISearchPatternGenerator SearchPatternGenerator => L0053.SearchPatternGenerator.Instance;
+        public static ISearchPatterns SearchPatterns => L0053.SearchPatterns.Instance;
+        public static Z0000.IStrings Strings => Z0000.Strings.Instance;
+        public static IStringOperator StringOperator => L0053.StringOperator.Instance;
+        public static IValues Values => L0053.Values.Instance;
     }
 }
