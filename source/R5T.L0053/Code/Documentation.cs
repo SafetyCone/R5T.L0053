@@ -8,5 +8,9 @@ namespace R5T.L0053
 	/// </summary>
 	public static class Documentation
 	{
-	}
+        /// <summary>
+        /// type name (fully qualified type name)
+        /// </summary>
+        public static readonly object TypeNameMeansFullyQualifiedTypeName;
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 
 using R5T.T0131;
+using R5T.Z0000;
 
 
 namespace R5T.L0053
@@ -21,5 +22,13 @@ namespace R5T.L0053
 		/// The value for the command line to have no arguments is null.
 		/// </summary>
 		public string EmptyCommandArguments => null;
+
+        /// <summary>
+        /// Version strings can have a 'v' as a leading version indicator (ex: v4.0.30319).
+        /// </summary>
+        public const char LeadingVersionIndicator_Constant = ICharacters.v_Lowercase_Constant;
+
+        /// <inheritdoc cref="LeadingVersionIndicator_Constant"/>
+        public char LeadingVersionIndicator => LeadingVersionIndicator_Constant;
     }
 }

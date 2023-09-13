@@ -18,5 +18,11 @@ namespace R5T.L0053
 
             return output;
         }
+
+        public T SecondFromEnd<T>(T[] array)
+        {
+            var output = array[^2];
+            return output;
+        }
     }
 }

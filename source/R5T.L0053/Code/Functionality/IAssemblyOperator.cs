@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 using R5T.T0132;
+
+using R5T.L0053.Extensions;
 
 
 namespace R5T.L0053
@@ -9,37 +13,72 @@ namespace R5T.L0053
     [FunctionalityMarker]
     public partial interface IAssemblyOperator : IFunctionalityMarker
     {
-        public AssemblyName Get_AssemblyName(string assemblyFilePath)
+        public void Foreach_Member(
+            Assembly assembly,
+            Action<MemberInfo> action)
         {
-            var output = AssemblyName.GetAssemblyName(assemblyFilePath);
+            var members = this.Enumerate_Members(assembly);
+
+            foreach (var member in members)
+            {
+                action(member);
+            }
+        }
+
+        public void Foreach_Type(
+            Assembly assembly,
+            Action<TypeInfo> action)
+        {
+            var types = this.Enumerate_Types(assembly);
+
+            foreach (var typeInfo in types)
+            {
+                action(typeInfo);
+            }
+        }
+
+        public IEnumerable<MemberInfo> Enumerate_Members(Assembly assembly)
+        {
+            var output = this.Enumerate_Types(assembly)
+                .SelectMany(typeInfo => Instances.EnumerableOperator.Empty<MemberInfo>()
+                    .Append(typeInfo)
+                    .Append(
+                        Instances.TypeInfoOperator.Get_MemberInfos(typeInfo)
+                    )
+                )
+                ;
+
             return output;
         }
 
-        public string Get_FullAssemblyName(AssemblyName assemblyName)
+        /// <summary>
+        /// Returns <see cref="Assembly.DefinedTypes"/>.
+        /// </summary>
+        public IEnumerable<TypeInfo> Enumerate_Types(Assembly assembly)
         {
-            return assemblyName.FullName;
+            return assembly.DefinedTypes;
         }
 
-        public string Get_FullAssemblyName(string assemblyFilePath)
+        public MemberInfo[] Get_Members(Assembly assembly)
         {
-            var assemblyName = this.Get_AssemblyName(assemblyFilePath);
+            var output = this.Enumerate_Members(assembly)
+                .Now();
 
-            var output = this.Get_FullAssemblyName(assemblyName);
             return output;
         }
 
-        public string Get_AssemblyNameValue(AssemblyName assemblyName)
+        public TypeInfo[] Get_Types(Assembly assembly)
         {
-            var output = assemblyName.FullName;
+            var output = this.Enumerate_Types(assembly)
+                .Now();
+
             return output;
         }
 
-        public string Get_AssemblyNameValue(string assemblyFilePath)
+        /// <inheritdoc cref="IAssemblyFilePathOperator.Get_AssemblyFilePaths_InAssemblyDirectory(string)"/>
+        public string[] Get_AssemblyFilePaths_InAssemblyDirectory(string assemblyFilePath)
         {
-            var assemblyName = this.Get_AssemblyName(assemblyFilePath);
-
-            var output = this.Get_AssemblyNameValue(assemblyName);
-            return output;
+            return Instances.AssemblyFilePathOperator.Get_AssemblyFilePaths_InAssemblyDirectory(assemblyFilePath);
         }
     }
 }

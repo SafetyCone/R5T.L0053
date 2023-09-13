@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -34,6 +35,20 @@ namespace R5T.L0053
                 : defaultDirectorySeparator
                 ;
 
+            return output;
+        }
+
+        public string Combine(params string[] pathParts)
+        {
+            var output = Path.Combine(pathParts);
+            return output;
+        }
+
+        public string Combine(IEnumerable<string> pathParts)
+        {
+            var pathPartsArray = pathParts.ToArray();
+
+            var output = this.Combine(pathPartsArray);
             return output;
         }
 
@@ -96,6 +111,27 @@ namespace R5T.L0053
                 basePath,
                 path_BasePathRelative);
 
+            return output;
+        }
+
+        public string Get_DirectoryPath(IEnumerable<string> pathParts)
+        {
+            var combined = this.Combine(pathParts);
+
+            var output = this.Ensure_DirectoryIndicated(combined);
+            return output;
+        }
+
+        public string Get_DirectoryPath(params string[] pathParts)
+        {
+            return this.Get_DirectoryPath(pathParts.AsEnumerable());
+        }
+
+        public string[] Get_DirectoryPathParts(string directoryPath)
+        {
+            var directoryInfo = Instances.DirectoryInfoOperator.From(directoryPath);
+
+            var output = Instances.DirectoryInfoOperator.Get_PathParts(directoryInfo);
             return output;
         }
 

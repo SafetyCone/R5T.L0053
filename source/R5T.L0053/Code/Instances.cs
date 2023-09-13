@@ -5,15 +5,21 @@ namespace R5T.L0053
 {
     public static class Instances
     {
+        public static IActionOperator ActionOperator => L0053.ActionOperator.Instance;
+        public static IArrayOperator ArrayOperator => L0053.ArrayOperator.Instance;
         public static IAssemblyFileNameOperator AssemblyFileNameOperator => L0053.AssemblyFileNameOperator.Instance;
         public static IAssemblyFilePathOperator AssemblyFilePathOperator => L0053.AssemblyFilePathOperator.Instance;
         public static IAssemblyOperator AssemblyOperator => L0053.AssemblyOperator.Instance;
         public static IBuiltInTypes BuiltInTypes => L0053.BuiltInTypes.Instance;
         public static ICommandLineArgumentsOperator CommandLineArgumentsOperator => L0053.CommandLineArgumentsOperator.Instance;
+        public static ICharacterOperator CharacterOperator => L0053.CharacterOperator.Instance;
         public static Z0000.ICharacters Characters => Z0000.Characters.Instance;
+        public static IDirectoryInfoOperator DirectoryInfoOperator => L0053.DirectoryInfoOperator.Instance;
+        public static IDirectoryNameOperator DirectoryNameOperator => L0053.DirectoryNameOperator.Instance;
         public static IDirectorySeparators DirectorySeparators => L0053.DirectorySeparators.Instance;
         public static IDocumentationFileNameOperator DocumentationFileNameOperator => L0053.DocumentationFileNameOperator.Instance;
         public static IDocumentationFilePathOperator DocumentationFilePathOperator => L0053.DocumentationFilePathOperator.Instance;
+        public static IDotnetPackDirectoryPathOperator DotnetPackDirectoryPathOperator => L0053.DotnetPackDirectoryPathOperator.Instance;
         public static IEnumerableOperator EnumerableOperator => L0053.EnumerableOperator.Instance;
         public static IEnumerationUnderlyingTypes EnumerationUnderlyingTypes => L0053.EnumerationUnderlyingTypes.Instance;
         public static IExceptionMessageOperator ExceptionMessageOperator => L0053.ExceptionMessageOperator.Instance;
@@ -28,13 +34,24 @@ namespace R5T.L0053
         public static IFileSystemOperator FileSystemOperator => L0053.FileSystemOperator.Instance;
         public static IIndexOperator IndexOperator => L0053.IndexOperator.Instance;
         public static IIndices Indices => L0053.Indices.Instance;
+        public static Z0000.IIntegers Integers => Z0000.Integers.Instance;
         public static IIntegralTypes IntegralTypes => L0053.IntegralTypes.Instance;
         public static IMessages Messages => L0053.Messages.Instance;
+        public static IMethodInfoOperator MethodInfoOperator => L0053.MethodInfoOperator.Instance;
+        public static INamespacedTypeNameOperator NamespacedTypeNameOperator => L0053.NamespacedTypeNameOperator.Instance;
         public static IPathOperator PathOperator => L0053.PathOperator.Instance;
+        public static IPaths Paths => L0053.Paths.Instance;
+        public static IRuntimeDirectoryPathOperator RuntimeDirectoryPathOperator => L0053.RuntimeDirectoryPathOperator.Instance;
+        public static IRuntimeEnvironmentOperator RuntimeEnvironmentOperator => L0053.RuntimeEnvironmentOperator.Instance;
         public static ISearchPatternGenerator SearchPatternGenerator => L0053.SearchPatternGenerator.Instance;
         public static ISearchPatterns SearchPatterns => L0053.SearchPatterns.Instance;
+        public static IStringBuilderOperator StringBuilderOperator => L0053.StringBuilderOperator.Instance;
         public static Z0000.IStrings Strings => Z0000.Strings.Instance;
         public static IStringOperator StringOperator => L0053.StringOperator.Instance;
+        public static ITokenSeparators TokenSeparators => L0053.TokenSeparators.Instance;
+        public static ITypeInfoOperator TypeInfoOperator => L0053.TypeInfoOperator.Instance;
+        public static ITypeOperator TypeOperator => L0053.TypeOperator.Instance;
         public static IValues Values => L0053.Values.Instance;
+        public static IVersionOperator VersionOperator => L0053.VersionOperator.Instance;
     }
 }
