@@ -122,7 +122,7 @@ namespace R5T.L0053
         {
             var indexOfGenericTypeParameterCountTokenSeparator = Instances.StringOperator.Get_IndexOf_OrNotFound(
                 namespacedTypeName,
-                Instances.TokenSeparators.GenericTypeParameterCountTokenSeparator);
+                Instances.TokenSeparators.TypeParameterCountSeparator);
 
             var tokenSeparatorWasFound = Instances.IndexOperator.Is_Found(indexOfGenericTypeParameterCountTokenSeparator);
 
@@ -142,7 +142,7 @@ namespace R5T.L0053
         {
             var indexOfGenericTypeParameterCountTokenSeparator = Instances.StringOperator.Get_IndexOf_OrNotFound(
                 namespacedTypeName,
-                Instances.TokenSeparators.GenericTypeParameterCountTokenSeparator);
+                Instances.TokenSeparators.TypeParameterCountSeparator);
 
             Instances.IndexOperator.Verify_IsFound(indexOfGenericTypeParameterCountTokenSeparator);
 

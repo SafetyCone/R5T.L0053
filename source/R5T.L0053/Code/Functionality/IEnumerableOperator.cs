@@ -119,6 +119,21 @@ namespace R5T.L0053
             return output;
         }
 
+        public IEnumerable<T> Concatenate<T>(IEnumerable<IEnumerable<T>> enumerables)
+        {
+            var output = enumerables
+                .SelectMany(enumerable => enumerable)
+                ;
+
+            return output;
+        }
+
+        public IEnumerable<T> Concatenate<T>(params IEnumerable<T>[] enumerables)
+        {
+            var output = this.Concatenate(enumerables.AsEnumerable());
+            return output;
+        }
+
         public bool Contains<T>(
             IEnumerable<T> array,
             T item)
@@ -206,6 +221,40 @@ namespace R5T.L0053
             Func<T, string> keySelector)
         {
             var output = items.OrderBy(keySelector);
+            return output;
+        }
+
+        public T Get_First<T>(IEnumerable<T> values)
+        {
+            var output = values.First();
+            return output;
+        }
+
+        public T Get_Nth<T>(
+            IEnumerable<T> values,
+            int n)
+        {
+            var output = values
+                .Skip(n - 1)
+                .First();
+
+            return output;
+        }
+
+        public T Get_Second<T>(IEnumerable<T> values)
+        {
+            var output = this.Get_Nth(values, 2);
+            return output;
+        }
+
+        public IEnumerable<(T, T)> Zip<T>(
+            IEnumerable<T> a,
+            IEnumerable<T> b)
+        {
+            var output = a.Zip(
+                b,
+                (a, b) => (a, b));
+
             return output;
         }
     }

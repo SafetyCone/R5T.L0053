@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 
@@ -10,9 +12,32 @@ namespace R5T.L0053
     [FunctionalityMarker]
     public partial interface IMethodInfoOperator : IFunctionalityMarker
     {
+        /// <summary>
+        /// Gets the generic type inputs of a method.
+        /// </summary>
+        public Type[] Get_GenericTypeInputs(MethodInfo methodInfo)
+        {
+            var output = Instances.MethodBaseOperator.Get_GenericTypeInputs(methodInfo);
+            return output;
+        }
+
+        /// <inheritdoc cref="IMethodBaseOperator.Get_GenericTypeParameters(MethodBase)"/>
+        public Type[] Get_GenericTypeParameters(MethodInfo methodInfo)
+        {
+            var output = Instances.MethodBaseOperator.Get_GenericTypeParameters(methodInfo);
+            return output;
+        }
+
+        /// <inheritdoc cref="IMethodBaseOperator.Get_InputParameters(MethodBase)"/>
         public ParameterInfo[] Get_InputParameters(MethodInfo methodInfo)
         {
-            var output = methodInfo.GetParameters();
+            var output = Instances.MethodBaseOperator.Get_InputParameters(methodInfo);
+            return output;
+        }
+
+        public Type Get_ReturnType(MethodInfo methodInfo)
+        {
+            var output = methodInfo.ReturnType;
             return output;
         }
 
@@ -34,11 +59,116 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// Determines whether the method has any generic type parameters.
+        /// Determines if the method is an explicit, or implicit, conversion operator.
         /// </summary>
+        public bool Is_ConversionOperator(MethodInfo methodInfo)
+        {
+            var output = Instances.MethodNameOperator.Is_ConversionOperator(methodInfo.Name);
+            return output;
+        }
+
+        /// <inheritdoc cref="IMethodBaseOperator.Is_Generic(MethodBase)"/>
         public bool Is_Generic(MethodInfo methodInfo)
         {
-            var output = methodInfo.IsGenericMethod;
+            var output = Instances.MethodBaseOperator.Is_Generic(methodInfo);
+            return output;
+        }
+
+        public MethodInfo Get_MethodOf(
+            Type type,
+            string methodName)
+        {
+            var method = type.GetMethods()
+                .Where(Instances.MethodInfoOperations.Name_Is(methodName))
+                .Single();
+
+            return method;
+        }
+
+        public MethodInfo Get_MethodOf<T>(string methodName)
+        {
+            var type = Instances.TypeOperator.Get_TypeOf<T>();
+
+            var output = this.Get_MethodOf(
+                type,
+                methodName);
+
+            return output;
+        }
+
+        public MethodInfo Get_MethodOf(
+            Type type,
+            string methodName,
+            int genericTypeInputCount)
+        {
+            var method = type.GetMethods()
+                .Where(Instances.MethodInfoOperations.Name_Is(
+                    methodName,
+                    genericTypeInputCount))
+                .Single();
+
+            return method;
+        }
+
+        public MethodInfo Get_MethodOf<T>(
+            string methodName,
+            int genericTypeInputCount)
+        {
+            var type = Instances.TypeOperator.Get_TypeOf<T>();
+
+            var output = this.Get_MethodOf(
+                type,
+                methodName,
+                genericTypeInputCount);
+
+            return output;
+        }
+
+        public int Get_GenericTypeInputCount(MethodInfo methodInfo)
+        {
+            var output = methodInfo.GetGenericArguments().Length;
+            return output;
+        }
+
+        /// <summary>
+        /// Gets the standard name for the method.
+        /// </summary>
+        public string Get_Name(MethodInfo method)
+        {
+            var output = method.Name;
+            return output;
+        }
+
+        public bool Is_GenericTypeInputCount(
+            MethodInfo methodInfo,
+            int genericTypeInputCount)
+        {
+            var count = this.Get_GenericTypeInputCount(methodInfo);
+
+            var output = count == genericTypeInputCount;
+            return output;
+        }
+
+        public bool Is_Name(
+            MethodInfo method,
+            string methodName)
+        {
+            var name = this.Get_Name(method);
+
+            var output = name == methodName;
+            return output;
+        }
+
+        public bool Is_Name(
+            MethodInfo method,
+            string methodName,
+            int genericTypeInputCount)
+        {
+            var output = true
+                && this.Is_Name(method, methodName)
+                && this.Is_GenericTypeInputCount(method, genericTypeInputCount)
+                ;
+
             return output;
         }
     }

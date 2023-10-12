@@ -17,3 +17,21 @@ namespace R5T.L0053
         #endregion
     }
 }
+
+
+namespace R5T.L0053.Implementations
+{
+    public class TypeOperator : ITypeOperator
+    {
+        #region Infrastructure
+
+        public static ITypeOperator Instance { get; } = new TypeOperator();
+
+
+        private TypeOperator()
+        {
+        }
+
+        #endregion
+    }
+}

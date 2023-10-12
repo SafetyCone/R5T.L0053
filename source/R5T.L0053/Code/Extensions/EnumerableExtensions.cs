@@ -8,6 +8,14 @@ namespace R5T.L0053.Extensions
 {
     public static class EnumerableExtensions
     {
+        
+    }
+}
+
+namespace System.Linq
+{
+    public static class EnumerableExtensions
+    {
         public static IEnumerable<T> Append<T>(this IEnumerable<T> enumerable,
             IEnumerable<T> appendix)
         {
@@ -75,13 +83,7 @@ namespace R5T.L0053.Extensions
         {
             return Instances.EnumerableOperator.Combine(enumerables);
         }
-    }
-}
 
-namespace System.Linq
-{
-    public static class EnumerableExtensions
-    {
         public static IEnumerable<T> Distinct<T>(this IEnumerable<T> items,
             Func<T, T, bool> equalsMethod,
             Func<T, int> getHashCodeMethod)
@@ -115,6 +117,22 @@ namespace System.Linq
             Func<T, string> keySelector)
         {
             var output = Instances.EnumerableOperator.OrderAlphabetically(items, keySelector);
+            return output;
+        }
+
+        public static T Second<T>(this IEnumerable<T> items)
+        {
+            var output = Instances.EnumerableOperator.Get_Second(items);
+            return output;
+        }
+
+        public static IEnumerable<(T, T)> Zip<T>(this IEnumerable<T> items,
+            IEnumerable<T> b)
+        {
+            var output = Instances.EnumerableOperator.Zip(
+                items,
+                b);
+
             return output;
         }
     }
