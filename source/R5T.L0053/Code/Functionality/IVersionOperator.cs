@@ -11,6 +11,31 @@ namespace R5T.L0053
     [FunctionalityMarker]
     public partial interface IVersionOperator : IFunctionalityMarker
     {
+        public string Ensure_NotSuffixed(string versionString)
+        {
+            var indexOrNotFound = Instances.StringOperator.Get_IndexOf_OrNotFound(
+                versionString,
+                Instances.Characters.Dash);
+
+            var output = Instances.StringOperator.Is_Found(indexOrNotFound)
+                ? Instances.StringOperator.Get_Substring_Upto_Exclusive(
+                    indexOrNotFound,
+                    versionString)
+                : versionString
+                ;
+
+            return output;
+        }
+
+        public bool Is_Suffixed(string versionString)
+        {
+            var output = Instances.StringOperator.Contains(
+                versionString,
+                Instances.Characters.Dash);
+
+            return output;
+        }
+
         public string Ensure_NotVersionIndicated(string versionString)
         {
             var hasVersionIndicator = this.Has_LeadingVersionIndicator(versionString);
@@ -70,6 +95,12 @@ namespace R5T.L0053
         public char GetVersionTokenSeparator()
         {
             var output = Z0000.Instances.Characters.Period;
+            return output;
+        }
+
+        public Version Get_Version(string version)
+        {
+            var output = this.Parse(version);
             return output;
         }
 
@@ -154,7 +185,10 @@ namespace R5T.L0053
         /// </summary>
         public Version Parse(string versionString)
         {
-            var ensuredVersionString = this.Ensure_NotVersionIndicated(versionString);
+            var ensuredVersionString = versionString;
+
+            ensuredVersionString = this.Ensure_NotVersionIndicated(ensuredVersionString);
+            ensuredVersionString = this.Ensure_NotSuffixed(ensuredVersionString);
 
             var output = Version.Parse(ensuredVersionString);
             return output;

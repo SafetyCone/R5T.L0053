@@ -51,11 +51,39 @@ namespace R5T.L0053.N000
                 fileExtension);
         }
 
+        public bool Exists_File(string filePath)
+        {
+            var output = File.Exists(filePath);
+            return output;
+        }
+
         public Func<string, IEnumerable<string>> Get_Enumerate_FilePaths_ByFileExtension(string fileExtension)
         {
             return directoryPath => this.Enumerate_ChildFilePaths_ByFileExtension(
                 directoryPath,
                 fileExtension);
+        }
+
+        /// <summary>
+        /// Enumerates child directories in the directory (not including in any sub-directories).
+        /// </summary>
+        public IEnumerable<string> Enumerate_ChildDirectoryPaths(
+            string directoryPath)
+        {
+            var output = Directory.EnumerateDirectories(directoryPath);
+            return output;
+        }
+
+        /// <inheritdoc cref="Enumerate_ChildDirectoryPaths(string)"/>
+        public IEnumerable<string> Enumerate_ChildDirectoryPaths(
+            string directoryPath,
+            string searchPattern)
+        {
+            var output = Directory.EnumerateDirectories(
+                directoryPath,
+                searchPattern);
+
+            return output;
         }
 
         /// <summary>

@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using R5T.N0000;
 
 using R5T.T0132;
+
 
 
 namespace R5T.L0053
@@ -160,6 +163,26 @@ namespace R5T.L0053
         public IEnumerable<T> Empty<T>()
         {
             var output = Enumerable.Empty<T>();
+            return output;
+        }
+
+        /// <summary>
+        /// Gets items from the input enumerable <em>except</em> where the predicate is true.
+        /// <para>This can been seen as the opposite of the "where" operation.</para>
+        /// </summary>
+        public IEnumerable<T> Except_If<T>(
+            IEnumerable<T> enumerable,
+            Func<T, bool> predicate)
+        {
+            var output = enumerable
+                .Where(x =>
+                {
+                    var result = predicate(x);
+
+                    var output = !result;
+                    return output;
+                });
+
             return output;
         }
 

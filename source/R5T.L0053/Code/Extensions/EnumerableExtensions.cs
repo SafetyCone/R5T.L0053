@@ -12,6 +12,21 @@ namespace R5T.L0053.Extensions
     }
 }
 
+namespace R5T.Linq
+{
+    public static class EnumerableExtensions
+    {
+        /// <inheritdoc cref="L0053.IEnumerableOperator.Except_If{T}(IEnumerable{T}, Func{T, bool})"/>
+        public static IEnumerable<T> Except_If<T>(this IEnumerable<T> enumerable,
+            Func<T, bool> predicate)
+        {
+            return Instances.EnumerableOperator.Except_If(
+                enumerable,
+                predicate);
+        }
+    }
+}
+
 namespace System.Linq
 {
     public static class EnumerableExtensions

@@ -88,6 +88,16 @@ namespace R5T.L0053
             return output;
         }
 
+        public T[] From<T>(T value)
+        {
+            var output = new[]
+            {
+                value,
+            };
+
+            return output;
+        }
+
         public int Get_IndexOfLast(Array array)
         {
             var output = array.Length - 1;
