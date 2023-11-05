@@ -97,6 +97,12 @@ namespace R5T.L0053
             return Instances.DirectorySeparators.Both;
         }
 
+        public string Get_DirectoryName(string directoryPath)
+        {
+            var output = new DirectoryInfo(directoryPath).Name;
+            return output;
+        }
+
         public string Get_FileName(string filePath)
         {
             var output = new FileInfo(filePath).Name;

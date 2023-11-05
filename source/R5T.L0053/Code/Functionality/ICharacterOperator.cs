@@ -4,6 +4,8 @@ using System.Linq;
 
 using R5T.T0132;
 
+using R5T.L0053.Extensions;
+
 using Glossary = R5T.Y0000.Glossary;
 
 
@@ -12,6 +14,27 @@ namespace R5T.L0053
     [FunctionalityMarker]
     public partial interface ICharacterOperator : IFunctionalityMarker
     {
+        public string Display(char character)
+        {
+            return character switch
+            {
+                ' ' => @"\space",
+                '\t' => @"\t",
+                '\n' => @"\n",
+                '\r' => @"\r",
+                _ => character.ToString()
+            };
+        }
+
+        public string DisplayCharacters(string @string)
+        {
+            var output = @string
+                .Select(this.Display)
+                .Join();
+
+            return output;
+        }
+
         public string Get_String(IEnumerable<char> characters)
         {
             var charactersArray = characters.ToArray();
@@ -156,6 +179,36 @@ namespace R5T.L0053
         public bool Is_Whitespace(char character)
         {
             var output = Char.IsWhiteSpace(character);
+            return output;
+        }
+
+        /// <inheritdoc cref="Is_Whitespace(char)"/>
+        public bool Is_NotWhitespace(char character)
+        {
+            var isWhitespace = this.Is_Whitespace(character);
+
+            var output = !isWhitespace;
+            return output;
+        }
+
+        public string Join(IEnumerable<char> characters, string separator)
+        {
+            var characterStrings = characters
+                .Select(character => character.ToString())
+                ;
+
+            var output = Instances.StringOperator.Join(
+                separator,
+                characterStrings);
+
+            return output;
+        }
+
+        public string Join(IEnumerable<char> characters)
+        {
+            var separator = Instances.Strings.CommaSeparatedListSpacedSeparator;
+
+            var output = this.Join(characters, separator);
             return output;
         }
     }

@@ -51,6 +51,9 @@ namespace R5T.L0053
         /// Returns whether a null check can decide whether two instances are equal,
         /// and if so, what equality the null check provides.
         /// </summary>
+        /// <remarks>
+        /// <inheritdoc cref="Documentation.NullCheckDeterminesEquality" path="/summary"/>
+        /// </remarks>
         public bool NullCheckDeterminesEquality<T>(T a, T b, out bool areEqual)
             // Restrict to reference types so that we don't accidentally use this on value types (since the "is null" syntax works for value types, this operation is unneccesary).
             where T : class

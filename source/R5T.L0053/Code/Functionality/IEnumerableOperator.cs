@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using R5T.L0053.Extensions;
 using R5T.N0000;
 
 using R5T.T0132;
@@ -145,6 +146,37 @@ namespace R5T.L0053
             return output;
         }
 
+        public T[] Get_Distinct_KeepFirst<T, TKey>(
+            IEnumerable<T> values,
+            Func<T, TKey> keySelector,
+            out Dictionary<TKey, T[]> duplicatesByKey)
+        {
+            var valuesByKey = new Dictionary<TKey, T>();
+            var duplicatesByKeyList = new Dictionary<TKey, List<T>>();
+
+            foreach (var value in values)
+            {
+                var key = keySelector(value);
+
+                // Performs the "keep-first" functionality.
+                var added = valuesByKey.TryAdd(key, value);
+                if(!added)
+                {
+                    duplicatesByKeyList.Add_Value(
+                        key,
+                        value);
+                }
+            }
+
+            duplicatesByKey = duplicatesByKeyList
+                .ToDictionary(
+                    x => x.Key,
+                    x => x.Value.ToArray());
+
+            var output = valuesByKey.Values.ToArray();
+            return output;
+        }
+
         public IEnumerable<T> Distinct<T>(
             IEnumerable<T> items,
             Func<T, T, bool> equalsMethod,
@@ -218,6 +250,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
+        /// <para>The opposite of Any().</para>
         /// Quality-of-life overload for <see cref="Is_Empty{T}(IEnumerable{T})"/>.
         /// </summary>
         public bool None<T>(IEnumerable<T> items)
@@ -244,6 +277,33 @@ namespace R5T.L0053
             Func<T, string> keySelector)
         {
             var output = items.OrderBy(keySelector);
+            return output;
+        }
+
+        /// <summary>
+        /// Gets all two-pair combinations.
+        /// </summary>
+        public (T, T)[] Get_Combinations<T>(IEnumerable<T> values)
+        {
+            var array = values.ToArray();
+
+            IEnumerable<(T, T)> Internal()
+            {
+                var elementCount = array.Length;
+
+                for (int i = 0; i < elementCount; i++)
+                {
+                    for (int j = i + 1; j < elementCount; j++)
+                    {
+                        var firstElement = array[i];
+                        var secondElement = array[j];
+
+                        yield return (firstElement, secondElement);
+                    }
+                }
+            }
+
+            var output = Internal().Now();
             return output;
         }
 

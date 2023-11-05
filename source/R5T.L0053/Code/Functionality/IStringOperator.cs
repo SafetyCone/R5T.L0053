@@ -657,6 +657,20 @@ namespace R5T.L0053
             return output;
         }
 
+        public bool Is_WhitespaceOnly(string @string)
+        {
+            foreach (var character in @string)
+            {
+                var isNotWhitespace = Instances.CharacterOperator.Is_NotWhitespace(character);
+                if(isNotWhitespace)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public string Join(char separator, IEnumerable<string> strings)
         {
             var output = System.String.Join(separator, strings);
@@ -678,6 +692,15 @@ namespace R5T.L0053
         public string Join(string separator, params string[] strings)
         {
             var output = this.Join(separator, strings.AsEnumerable());
+            return output;
+        }
+
+        public string Join(IEnumerable<string> strings)
+        {
+            var output = this.Join(
+                Instances.Strings.Empty,
+                strings);
+
             return output;
         }
 
@@ -711,6 +734,19 @@ namespace R5T.L0053
             return currentString;
         }
 
+        public string Replace_Characters(
+            string @string,
+            char newCharacter,
+            params char[] oldCharacters)
+        {
+            var output = this.Replace(
+                @string,
+                newCharacter,
+                oldCharacters.AsEnumerable());
+
+            return output;
+        }
+
         public string Replace(
             string @string,
             char newCharacter,
@@ -724,15 +760,58 @@ namespace R5T.L0053
             return output;
         }
 
-        public string Replace_Characters(
+        public string Replace_String(
             string @string,
-            char newCharacter,
-            params char[] oldCharacters)
+            string oldString,
+            string newString)
+        {
+            var output = @string.Replace(
+                oldString,
+                newString);
+
+            return output;
+        }
+
+        public string Replace(
+            string @string,
+            string newString,
+            IEnumerable<string> oldStrings)
+        {
+            var currentString = @string;
+
+            foreach (var oldString in oldStrings)
+            {
+                currentString = this.Replace_String(
+                    currentString,
+                    oldString,
+                    newString);
+            }
+
+            return currentString;
+        }
+
+        public string Replace_Strings(
+            string @string,
+            string newString,
+            params string[] oldStrings)
         {
             var output = this.Replace(
                 @string,
-                newCharacter,
-                oldCharacters.AsEnumerable());
+                newString,
+                oldStrings.AsEnumerable());
+
+            return output;
+        }
+
+        public string Replace(
+            string @string,
+            string newString,
+            params string[] oldStrings)
+        {
+            var output = this.Replace_Strings(
+                @string,
+                newString,
+                oldStrings);
 
             return output;
         }

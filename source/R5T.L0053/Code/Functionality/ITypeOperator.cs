@@ -12,18 +12,24 @@ namespace R5T.L0053
     public partial interface ITypeOperator : IFunctionalityMarker
     {
         /// <summary>
-        /// Chooses <see cref="TypeDeterminesEquality_Instance{T}(T, T, out bool)"/> as the default.
+        /// Chooses <see cref="TypeCheckDeterminesEquality_Instance{T}(T, T, out bool)"/> as the default.
         /// </summary>
-        public bool TypeDeterminesEquality<T>(T a, T b, out bool typesAreEqual)
+        /// <remarks>
+        /// <inheritdoc cref="Documentation.TypeCheckDeterminesEquality" path="/summary"/>
+        /// </remarks>
+        public bool TypeCheckDeterminesEquality<T>(T a, T b, out bool typesAreEqual)
         {
-            var output = this.TypeDeterminesEquality_Instance(a, b, out typesAreEqual);
+            var output = this.TypeCheckDeterminesEquality_Instance(a, b, out typesAreEqual);
             return output;
         }
 
         /// <summary>
         /// Use the type returned by the <see cref="object.GetType"/> method of each instance to determine type by equality.
         /// </summary>
-        public bool TypeDeterminesEquality_Instance<T>(T a, T b, out bool typesAreEqual)
+        /// <remarks>
+        /// <inheritdoc cref="Documentation.TypeCheckDeterminesEquality" path="/summary"/>
+        /// </remarks>
+        public bool TypeCheckDeterminesEquality_Instance<T>(T a, T b, out bool typesAreEqual)
         {
             var typeA = a.GetType();
             var typeB = b.GetType();
@@ -111,6 +117,14 @@ namespace R5T.L0053
             var typeOfT = typeof(T);
 
             var output = this.Get_NamespacedTypeName(typeOfT);
+            return output;
+        }
+
+        public string Get_NamespacedTypeNameOf<T>(T value)
+        {
+            var typeOfValue = this.Get_TypeOf(value);
+
+            var output = this.Get_NamespacedTypeName(typeOfValue);
             return output;
         }
 

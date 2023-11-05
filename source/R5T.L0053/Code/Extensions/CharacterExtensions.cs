@@ -17,5 +17,11 @@ namespace R5T.L0053.Extensions
             var output = Instances.CharacterOperator.Get_String(characters);
             return output;
         }
+
+        public static string Join(this IEnumerable<char> characters)
+        {
+            var output = Instances.CharacterOperator.Join(characters);
+            return output;
+        }
     }
 }

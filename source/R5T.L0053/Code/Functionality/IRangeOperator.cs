@@ -28,7 +28,7 @@ namespace R5T.L0053
         {
             var output = true
                 && range.Start.Value <= index
-                && range.End.Value >= index
+                && range.End.Value > index
                 ;
 
             return output;

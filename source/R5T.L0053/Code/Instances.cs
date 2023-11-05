@@ -13,6 +13,7 @@ namespace R5T.L0053
         public static IAttributeOperations AttributeOperations => L0053.AttributeOperations.Instance;
         public static IAttributeOperator AttributeOperator => L0053.AttributeOperator.Instance;
         public static IBuiltInTypes BuiltInTypes => L0053.BuiltInTypes.Instance;
+        public static ICancellationTokens CancellationTokens => L0053.CancellationTokens.Instance;
         public static ICommandLineArgumentsOperator CommandLineArgumentsOperator => L0053.CommandLineArgumentsOperator.Instance;
         public static ICharacterOperator CharacterOperator => L0053.CharacterOperator.Instance;
         public static Z0000.ICharacters Characters => Z0000.Characters.Instance;
@@ -38,7 +39,9 @@ namespace R5T.L0053
         public static IFileExtensions FileExtensions => L0053.FileExtensions.Instance;
         public static IFileNameOperator FileNameOperator => L0053.FileNameOperator.Instance;
         public static IFileModeOperator FileModeOperator => L0053.FileModeOperator.Instance;
+        public static IFileStreamOperator FileStreamOperator => L0053.FileStreamOperator.Instance;
         public static IFileSystemOperator FileSystemOperator => L0053.FileSystemOperator.Instance;
+        public static IFormatProviders FormatProviders => L0053.FormatProviders.Instance;
         public static IIndexOperator IndexOperator => L0053.IndexOperator.Instance;
         public static IIndices Indices => L0053.Indices.Instance;
         public static Z0000.IIntegers Integers => Z0000.Integers.Instance;
@@ -63,6 +66,7 @@ namespace R5T.L0053
         public static IStringBuilderOperator StringBuilderOperator => L0053.StringBuilderOperator.Instance;
         public static Z0000.IStrings Strings => Z0000.Strings.Instance;
         public static IStringOperator StringOperator => L0053.StringOperator.Instance;
+        public static ITextOperator TextOperator => L0053.TextOperator.Instance;
         public static ITokenSeparators TokenSeparators => L0053.TokenSeparators.Instance;
         public static ITypeInfoOperator TypeInfoOperator => L0053.TypeInfoOperator.Instance;
         public static ITypeNameAffixes TypeNameAffixes => L0053.TypeNameAffixes.Instance;
@@ -70,5 +74,7 @@ namespace R5T.L0053
         public static IValueOperator ValueOperator => L0053.ValueOperator.Instance;
         public static IValues Values => L0053.Values.Instance;
         public static IVersionOperator VersionOperator => L0053.VersionOperator.Instance;
+        public static IXmlWriterSettingsOperator XmlWriterSettingsOperator => L0053.XmlWriterSettingsOperator.Instance;
+        public static IXmlWriterSettingsSets XmlWriterSettingsSets => L0053.XmlWriterSettingsSets.Instance;
     }
 }
