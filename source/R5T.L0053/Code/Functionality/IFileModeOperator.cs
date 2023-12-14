@@ -7,16 +7,9 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IFileModeOperator : IFunctionalityMarker
+    public partial interface IFileModeOperator : IFunctionalityMarker,
+        L0066.IFileModeOperator
     {
-        public FileMode Get_FileMode(bool overwrite)
-        {
-            var output = overwrite
-                ? FileMode.Create
-                : FileMode.CreateNew
-                ;
-
-            return output;
-        }
+        
     }
 }

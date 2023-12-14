@@ -122,12 +122,6 @@ namespace System.Linq
             return Instances.EnumerableOperator.None(items);
         }
 
-        public static T[] Now<T>(this IEnumerable<T> items)
-        {
-            var output = Instances.EnumerableOperator.Now(items);
-            return output;
-        }
-
         public static IEnumerable<T> OrderAlphabetically<T>(this IEnumerable<T> items,
             Func<T, string> keySelector)
         {

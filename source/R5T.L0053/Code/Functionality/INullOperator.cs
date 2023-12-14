@@ -6,7 +6,8 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface INullOperator : IFunctionalityMarker
+    public partial interface INullOperator : IFunctionalityMarker,
+        L0066.INullOperator
     {
         /// <summary>
         /// Returns true of neither inputs are null, false otherwise.
@@ -89,21 +90,6 @@ namespace R5T.L0053
                     return false;
                 }
             }
-        }
-
-        public bool Is_NotNull<T>(T value)
-            where T : class
-        {
-            // A great, quick null check.
-            var output = value is object;
-            return output;
-        }
-
-        public bool Is_Null<T>(T value)
-            where T : class
-        {
-            var output = value is null;
-            return output;
         }
     }
 }

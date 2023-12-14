@@ -41,10 +41,5 @@ namespace R5T.L0053
         /// type name (fully qualified type name)
         /// </summary>
         public static readonly object TypeNameMeansFullyQualifiedTypeName;
-
-        /// <summary>
-        /// Note that only <see cref="XElement"/>, <see cref="XDocument"/> and <see cref="XAttribute"/> have constructors like this (<see cref="XObject"/>, <see cref="XNode"/>, and <see cref="XContainer"/> do not).
-        /// </summary>
-        public static readonly object WhichXObjectsAreCloneable;
     }
 }

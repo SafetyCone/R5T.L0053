@@ -7,7 +7,8 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IDateTimeOperator : IFunctionalityMarker
+    public partial interface IDateTimeOperator : IFunctionalityMarker,
+        L0066.IDateTimeOperator
     {
         public bool TryParseExact(
             string @string,

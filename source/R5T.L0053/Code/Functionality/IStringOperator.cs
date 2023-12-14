@@ -10,26 +10,11 @@ using R5T.L0053.Extensions;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IStringOperator : IFunctionalityMarker
+    public partial interface IStringOperator : IFunctionalityMarker,
+        L0066.IStringOperator
     {
         private static Internal.IStringOperator Internal => L0053.Internal.StringOperator.Instance;
 
-
-        public string Append(
-            string @string,
-            char character)
-        {
-            var output = @string + character;
-            return output;
-        }
-
-        public string Append(
-            string @string,
-            string appendix)
-        {
-            var output = @string + appendix;
-            return output;
-        }
 
         /// <summary>
         /// Quality-of-life overload for <see cref="StartsWith(string, string)"/>.
@@ -53,6 +38,18 @@ namespace R5T.L0053
             string subString)
         {
             var output = @string.Contains(subString);
+            return output;
+        }
+
+        public bool Contains(
+            string @string,
+            string subString,
+            StringComparison stringComparison)
+        {
+            var output = @string.Contains(
+                subString,
+                stringComparison);
+
             return output;
         }
 
@@ -302,22 +299,11 @@ namespace R5T.L0053
             return output;
         }
 
-        /// <summary>
-        /// Returns the character at the provided index.
-        /// </summary>
-        public char Get_Character(
-            string @string,
-            int index)
-        {
-            var output = @string[index];
-            return output;
-        }
-
         public int[] Get_IndicesOf_OrEmpty(
             string @string,
             char character)
         {
-            IEnumerable<int> Internal(
+            static IEnumerable<int> Internal(
                 string @string,
                 char specifiedCharacter)
             {
@@ -341,236 +327,9 @@ namespace R5T.L0053
             return output;
         }
 
-        public int Get_IndexOf(
-            string @string,
-            char character)
-        {
-            var indexOfOrNotFound = this.Get_IndexOf_OrNotFound(
-                @string,
-                character);
-
-            this.Verify_IsFound(indexOfOrNotFound, character);
-
-            return indexOfOrNotFound;
-        }
-
-        public int Get_IndexOf_OrNotFound(
-            string @string,
-            char character)
-        {
-            var output = @string.IndexOf(character);
-            return output;
-        }
-
-        /// <summary>
-        /// Gets the first index at which one of the provided characters is found.
-        /// </summary>
-        public int Get_IndexOfAny_OrNotFound(
-            string @string,
-            params char[] characters)
-        {
-            var output = @string.IndexOfAny(characters);
-            return output;
-        }
-
-        public int Get_IndexOfAny_OrNotFound(
-            string @string,
-            string[] searchStrings)
-        {
-            foreach (var searchString in searchStrings)
-            {
-                var index = @string.IndexOf(searchString);
-
-                var wasFound = this.Was_Found(index);
-                if (wasFound)
-                {
-                    return index;
-                }
-            }
-
-            return Instances.Indices.NotFound;
-        }
-
-        public string Get_LastNCharacters(
-            string @string,
-            int numberOfCharacters)
-        {
-            var output = @string[^numberOfCharacters..];
-            return output;
-        }
-
-        /// <summary>
-        /// Gets the last character of a string.
-        /// </summary>
-        public char Get_LastCharacter(string @string)
-        {
-            var output = @string[^1];
-            return output;
-        }
-
-        /// <summary>
-        /// Returns the last index of the specified character within the string,
-        /// or if the character is not found, throws an exception.
-        /// </summary>
-        public int Get_LastIndexOf(char character, string @string)
-        {
-            var indexOrNotFound = this.Get_LastIndexOf_OrNotFound(
-                character,
-                @string);
-
-            this.Verify_IsFound(indexOrNotFound, character);
-
-            return indexOrNotFound;
-        }
-
-        /// <summary>
-        /// Returns the last index of the specified character within the string,
-        /// or if the character is not found, returns <see cref="IIndices.NotFound"/>.
-        /// </summary>
-        public int Get_LastIndexOf_OrNotFound(
-            char character,
-            string @string)
-        {
-            var output = @string.LastIndexOf(character);
-            return output;
-        }
-
-        /// <summary>
-        /// Returns the last index of the specified character within the string,
-        /// or if the character is not found, returns <see cref="IIndices.NotFound"/>.
-        /// </summary>
-        public int Get_LastIndexOf_OrNotFound(
-            char character,
-            string @string,
-            int startIndexInclusive)
-        {
-            var subString = this.Get_Substring_From_Inclusive(
-                startIndexInclusive,
-                @string);
-
-            var indexInSubstring = this.Get_LastIndexOf_OrNotFound(
-                character,
-                subString);
-            if(!this.Is_Found(indexInSubstring))
-            {
-                return Instances.Indices.NotFound;
-            }
-
-            var output = startIndexInclusive + indexInSubstring;
-            return output;
-        }
-
-        public string Get_Substring_From_Inclusive_To_Inclusive(
-            int startIndex,
-            int endIndex,
-            string @string)
-        {
-            var length = Instances.IndexOperator.Get_Count_Inclusive_Inclusive(
-                startIndex,
-                endIndex);
-
-            var output = this.Get_Substring_From_Inclusive(
-                startIndex,
-                length,
-                @string);
-
-            return output;
-        }
-
-        public string Get_Substring_From_Exclusive_To_Exclusive(
-            int startIndex,
-            int endIndex,
-            string @string)
-        {
-            var length = Instances.IndexOperator.Get_Count_Exclusive_Exclusive(
-                startIndex,
-                endIndex);
-
-            var output = this.Get_Substring_From_Exclusive(
-                startIndex,
-                length,
-                @string);
-
-            return output;
-        }
-
-        public string Get_Substring_From_Inclusive(
-            int startIndex,
-            int length,
-            string @string)
-        {
-            var output = @string.Substring(startIndex, length);
-            return output;
-        }
-
-        public string Get_Substring_From_Exclusive(
-            int startIndex,
-            int length,
-            string @string)
-        {
-            var actualStartIndex = startIndex + 1;
-
-            var output = this.Get_Substring_From_Inclusive(
-                actualStartIndex,
-                length,
-                @string);
-
-            return output;
-        }
-
-        public string Get_Substring_From_Exclusive(
-            char character,
-            string @string)
-        {
-            var indexOfCharacter = this.Get_IndexOf(
-                @string,
-                character);
-
-            var output = this.Get_Substring_From_Exclusive(
-                indexOfCharacter,
-                @string);
-
-            return output;
-        }
-
-        /// <summary>
-        /// Gets a substring, starting at an index and going to the end.
-        /// </summary>
-        public string Get_Substring_From_Exclusive(
-            int startIndex_Exclusive,
-            string @string)
-        {
-            var output = @string[(startIndex_Exclusive + 1)..];
-            return output;
-        }
-
-        public string Get_Substring_From_Inclusive(
-            int startIndex_Exclusive,
-            string @string)
-        {
-            var output = @string[startIndex_Exclusive..];
-            return output;
-        }
-
-        public string Get_Substring_Upto_Inclusive(
-            int endIndex_Inclusive,
-            string @string)
-        {
-            var output = @string[..(endIndex_Inclusive + 1)];
-            return output;
-        }
-
-        public string Get_Substring_Upto_Exclusive(
-            int endIndex_Exclusive,
-            string @string)
-        {
-            var output = @string[..endIndex_Exclusive];
-            return output;
-        }
-
         /// <summary>
         /// Get the index of the first token containing the specified character.
-        /// If no token containing the specified character is found, return <see cref="IIndices.NotFound"/> (use with <see cref="Is_Found(int)"/>).
+        /// If no token containing the specified character is found, return <see cref="L0066.IIndices.NotFound"/> (use with <see cref="L0066.IStringOperator.Is_Found(int)"/>).
         /// </summary>
         public int Get_TokenIndex_Containing_OrNotFound(
             IEnumerable<string> tokens,
@@ -628,11 +387,6 @@ namespace R5T.L0053
             return isEmpty;
         }
 
-        public bool Is_Found(int index)
-        {
-            return Instances.IndexOperator.Is_Found(index);
-        }
-
         public bool Is_Null(string @string)
         {
             // Use  instead of:
@@ -654,53 +408,6 @@ namespace R5T.L0053
         public bool Is_NullOrEmpty(string @string)
         {
             var output = System.String.IsNullOrEmpty(@string);
-            return output;
-        }
-
-        public bool Is_WhitespaceOnly(string @string)
-        {
-            foreach (var character in @string)
-            {
-                var isNotWhitespace = Instances.CharacterOperator.Is_NotWhitespace(character);
-                if(isNotWhitespace)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public string Join(char separator, IEnumerable<string> strings)
-        {
-            var output = System.String.Join(separator, strings);
-            return output;
-        }
-
-        public string Join(char separator, params string[] strings)
-        {
-            var output = this.Join(separator, strings.AsEnumerable());
-            return output;
-        }
-
-        public string Join(string separator, IEnumerable<string> strings)
-        {
-            var output = System.String.Join(separator, strings);
-            return output;
-        }
-
-        public string Join(string separator, params string[] strings)
-        {
-            var output = this.Join(separator, strings.AsEnumerable());
-            return output;
-        }
-
-        public string Join(IEnumerable<string> strings)
-        {
-            var output = this.Join(
-                Instances.Strings.Empty,
-                strings);
-
             return output;
         }
 
@@ -873,7 +580,7 @@ namespace R5T.L0053
 
         /// <summary>
         /// Partitions the string based on an index,
-        /// or returns the whole input string as the first part if the input index is the <see cref="IIndices.NotFound"/> value (as determined by <see cref="Is_Found(int)"/>).
+        /// or returns the whole input string as the first part if the input index is the <see cref="L0066.IIndices.NotFound"/> value (as determined by <see cref="L0066.IStringOperator.Is_Found(int)"/>).
         /// </summary>
         public (string firstPart, string secondPart) Partition_OrFirstPartIfNotFound(
             int index,
@@ -1099,36 +806,6 @@ namespace R5T.L0053
             }
 
             return output;
-        }
-
-        public void Verify_IsFound(
-            int index,
-            char character)
-        {
-            var isFound = Instances.IndexOperator.Is_Found(index);
-            if(!isFound)
-            {
-                throw new Exception($"'{character}' was not found.");
-            }
-        }
-
-        public void Verify_IsFound<TException>(
-            int index,
-            Func<TException> exceptionConstructor)
-            where TException : Exception
-        {
-            var isFound = Instances.IndexOperator.Is_Found(index);
-            if (!isFound)
-            {
-                var exception = exceptionConstructor();
-
-                throw exception;
-            }
-        }
-
-        public bool Was_Found(int index)
-        {
-            return Instances.IndexOperator.Was_Found(index);
         }
 
         public string Wrap(

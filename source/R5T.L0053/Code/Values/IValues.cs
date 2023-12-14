@@ -7,22 +7,14 @@ using R5T.Z0000;
 namespace R5T.L0053
 {
     [ValuesMarker]
-    public partial interface IValues : IValuesMarker
+    public partial interface IValues : IValuesMarker,
+        L0066.IValues
     {
         /// <summary>
         /// <para><inheritdoc cref="IStrings.Empty" path="/summary/descendant::description"/></para>
         /// If an assembly has no file path location, the result of <see cref="System.Reflection.Assembly.Location"/> is the emtpy string (<see cref="IStrings.Empty"/>).
         /// </summary>
         public string Default_AssemblyFilePath => Instances.Strings.Empty;
-
-        /// <summary>
-        /// <para>true</para>
-        /// By default, files are overwritten.
-        /// </summary>
-        public const bool Default_OverwriteValue_Const = true;
-
-        /// <inheritdoc cref="Default_OverwriteValue_Const"/>
-        public bool Default_OverwriteValue => Default_OverwriteValue_Const;
 
         /// <summary>
         /// <para>

@@ -6,13 +6,14 @@ using R5T.T0132;
 
 using R5T.L0053.Extensions;
 
-using Glossary = R5T.Y0000.Glossary;
+using Glossary = R5T.Y0006.Glossary;
 
 
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface ICharacterOperator : IFunctionalityMarker
+    public partial interface ICharacterOperator : IFunctionalityMarker,
+        L0066.ICharacterOperator
     {
         public string Display(char character)
         {
@@ -170,24 +171,6 @@ namespace R5T.L0053
         public bool Is_Uppercase(char character)
         {
             var output = Char.IsUpper(character);
-            return output;
-        }
-
-        /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Whitespace" path="/definition"/>
-        /// </summary>
-        public bool Is_Whitespace(char character)
-        {
-            var output = Char.IsWhiteSpace(character);
-            return output;
-        }
-
-        /// <inheritdoc cref="Is_Whitespace(char)"/>
-        public bool Is_NotWhitespace(char character)
-        {
-            var isWhitespace = this.Is_Whitespace(character);
-
-            var output = !isWhitespace;
             return output;
         }
 
