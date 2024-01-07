@@ -31,18 +31,6 @@ namespace System.Linq
 {
     public static class EnumerableExtensions
     {
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> enumerable,
-            IEnumerable<T> appendix)
-        {
-            return Instances.EnumerableOperator.Append(enumerable, appendix);
-        }
-
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> enumerable,
-            params T[] appendix)
-        {
-            return Instances.EnumerableOperator.Append(enumerable, appendix);
-        }
-
         public static IEnumerable<T> AppendIf<T>(this IEnumerable<T> enumerable,
             bool value,
             IEnumerable<T> appendix)

@@ -15,13 +15,6 @@ namespace R5T.L0053
     public partial interface IEnumerableOperator : IFunctionalityMarker,
         L0066.IEnumerableOperator
     {
-        public IEnumerable<T> Append<T>(
-            IEnumerable<T> enumerable,
-            IEnumerable<T> appendix)
-        {
-            return enumerable.Concat(appendix);
-        }
-
         /// <summary>
         /// Append to an enumerable.
         /// </summary>
@@ -190,12 +183,6 @@ namespace R5T.L0053
             var output = items.Distinct(
                 equalityComparer);
 
-            return output;
-        }
-
-        public IEnumerable<T> Empty<T>()
-        {
-            var output = Enumerable.Empty<T>();
             return output;
         }
 

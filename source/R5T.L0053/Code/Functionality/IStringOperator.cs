@@ -377,40 +377,6 @@ namespace R5T.L0053
             return indexOrNotFound;
         }
 
-
-        /// <summary>
-        /// Determines if the input is specifically the <see cref="Z0000.IStrings.Empty"/> string.
-        /// </summary>
-        public bool Is_Empty(string value)
-        {
-            var isEmpty = value == Instances.Strings.Empty;
-            return isEmpty;
-        }
-
-        public bool Is_Null(string @string)
-        {
-            // Use  instead of:
-            // * == null - Equality operator eventually just uses Object.ReferenceEquals().
-            // * Object.Equals() - Should be Object.ReferenceEquals() instead.
-            // * Object.ReferenceEquals() - IDE0041 message is produced, indicating preference for "is null".
-            var output = @string is null;
-            return output;
-        }
-
-        public bool Is_NotNullOrEmpty(string @string)
-        {
-            var isNullOrEmpty = this.Is_NullOrEmpty(@string);
-
-            var output = !isNullOrEmpty;
-            return output;
-        }
-
-        public bool Is_NullOrEmpty(string @string)
-        {
-            var output = System.String.IsNullOrEmpty(@string);
-            return output;
-        }
-
         public string Replace_Character(
             string @string,
             char oldCharacter,
@@ -554,6 +520,14 @@ namespace R5T.L0053
             return output;
         }
 
+        public string[] Split(
+            char separator,
+            string @string)
+        {
+            var output = @string.Split(separator);
+            return output;
+        }
+
         /// <summary>
         /// Chooses <see cref="Partition_Exclusive(int, string)"/> as the default.
         /// </summary>
@@ -643,24 +617,6 @@ namespace R5T.L0053
             return this.Partition_Inclusive_OnSecondPart(
                 index,
                 @string);
-        }
-
-        public string[] Split(
-            char separator,
-            string @string,
-            StringSplitOptions options = StringSplitOptions.None)
-        {
-            var output = @string.Split(separator, options);
-            return output;
-        }
-
-        public string[] Split(
-            string separator,
-            string @string,
-            StringSplitOptions options = StringSplitOptions.None)
-        {
-            var output = @string.Split(separator, options);
-            return output;
         }
 
         public bool StartsWith(

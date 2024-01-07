@@ -8,7 +8,8 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IExceptionOperator : IFunctionalityMarker
+    public partial interface IExceptionOperator : IFunctionalityMarker,
+        L0066.IExceptionOperator
     {
         public Exception Get_Exception(string message)
         {

@@ -7,7 +7,8 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface ITextOperator : IFunctionalityMarker
+    public partial interface ITextOperator : IFunctionalityMarker,
+        L0066.ITextOperator
     {
         /// <summary>
         /// If the text is one of several special string values (null, empty, newline, or tab), outputs a representation of that string instead of the string itself.
