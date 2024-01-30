@@ -7,8 +7,9 @@ namespace R5T.L0053
 {
     /// <inheritdoc cref="Y0000.Documentation.For_SearchPattern"/>
     [ValuesMarker]
-    public partial interface ISearchPatterns : IValuesMarker
+    public partial interface ISearchPatterns : IValuesMarker,
+        L0066.ISearchPatterns
     {
-        public string All => Instances.Strings.Asterix;
+        
     }
 }

@@ -7,38 +7,9 @@ namespace R5T.L0053
 {
     /// <inheritdoc cref="Y0000.Documentation.For_SearchPattern"/>
     [FunctionalityMarker]
-    public partial interface ISearchPatternGenerator : IFunctionalityMarker
+    public partial interface ISearchPatternGenerator : IFunctionalityMarker,
+        L0066.ISearchPatternGenerator
     {
-        public string Directories_StartingWith(string directoryNameStart)
-        {
-            var output = this.Entries_StartingWith(directoryNameStart);
-            return output;
-        }
-
-        /// <summary>
-        /// Entries are files and directories.
-        /// </summary>
-        public string Entries_StartingWith(string nameStart)
-        {
-            var output = $"{nameStart}{Instances.SearchPatterns.All}";
-            return output;
-        }
-
-        public string Files_StartingWith(string fileNameStart)
-        {
-            var output = this.Entries_StartingWith(fileNameStart);
-            return output;
-        }
-
-        public string Files_WithExtension(string fileExtension)
-        {
-            var output = $"{Instances.SearchPatterns.All}{fileExtension}";
-            return output;
-        }
-
-        //public string Files_WithExtensions()
-        //{
-
-        //}
+        
     }
 }

@@ -75,12 +75,6 @@ namespace System.Linq
                 appendixIfFalse);
         }
 
-        public static IEnumerable<T> AppendRange<T>(this IEnumerable<T> enumerable,
-            IEnumerable<T> appendix)
-        {
-            return Instances.EnumerableOperator.AppendRange(enumerable, appendix);
-        }
-
         public static IEnumerable<T> Combine<T>(
             params IEnumerable<T>[] enumerables)
         {
@@ -105,31 +99,10 @@ namespace System.Linq
             return Instances.EnumerableOperator.Is_Empty(items);
         }
 
-        public static bool None<T>(IEnumerable<T> items)
-        {
-            return Instances.EnumerableOperator.None(items);
-        }
-
         public static IEnumerable<T> OrderAlphabetically<T>(this IEnumerable<T> items,
             Func<T, string> keySelector)
         {
             var output = Instances.EnumerableOperator.OrderAlphabetically(items, keySelector);
-            return output;
-        }
-
-        public static T Second<T>(this IEnumerable<T> items)
-        {
-            var output = Instances.EnumerableOperator.Get_Second(items);
-            return output;
-        }
-
-        public static IEnumerable<(T, T)> Zip<T>(this IEnumerable<T> items,
-            IEnumerable<T> b)
-        {
-            var output = Instances.EnumerableOperator.Zip(
-                items,
-                b);
-
             return output;
         }
     }

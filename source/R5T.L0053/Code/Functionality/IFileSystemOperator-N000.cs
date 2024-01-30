@@ -82,71 +82,6 @@ namespace R5T.L0053.N000
         }
 
         /// <summary>
-        /// Chooses <see cref="Copy_File_OverwriteAllowed(string, string)"/> as the default.
-        /// </summary>
-        public void Copy_File(
-            string sourceFilePath,
-            string destinationFilePath)
-        {
-            this.Copy_File_OverwriteAllowed(
-                sourceFilePath,
-                destinationFilePath);
-        }
-
-        public void Copy_File_OverwriteAllowed(
-            string sourceFilePath,
-            string destinationFilePath)
-        {
-            File.Copy(
-                sourceFilePath,
-                destinationFilePath,
-                true);
-        }
-
-        public void Copy_File_OverwriteForbidden(
-            string sourceFilePath,
-            string destinationFilePath)
-        {
-            File.Copy(
-                sourceFilePath,
-                destinationFilePath,
-                false);
-        }
-
-        /// <summary>
-        /// Enumerates files in the directory (not including in any sub-directories).
-        /// </summary>
-        public IEnumerable<string> Enumerate_FilePaths(string directoryPath)
-        {
-            return this.Enumerate_ChildFilePaths(directoryPath);
-        }
-
-        /// <summary>
-        /// Enumerates files in the directory (not including in any sub-directories).
-        /// </summary>
-        public IEnumerable<string> Enumerate_FilePaths_ByFileExtension(
-            string directoryPath,
-            string fileExtension)
-        {
-            return this.Enumerate_ChildFilePaths_ByFileExtension(
-                directoryPath,
-                fileExtension);
-        }
-
-        public bool Exists_File(string filePath)
-        {
-            var output = File.Exists(filePath);
-            return output;
-        }
-
-        public Func<string, IEnumerable<string>> Get_Enumerate_FilePaths_ByFileExtension(string fileExtension)
-        {
-            return directoryPath => this.Enumerate_ChildFilePaths_ByFileExtension(
-                directoryPath,
-                fileExtension);
-        }
-
-        /// <summary>
         /// Enumerates child directories in the directory (not including in any sub-directories).
         /// </summary>
         public IEnumerable<string> Enumerate_ChildDirectoryPaths(
@@ -166,39 +101,6 @@ namespace R5T.L0053.N000
                 searchPattern);
 
             return output;
-        }
-
-        /// <summary>
-        /// Enumerates child files in the directory (not including in any sub-directories).
-        /// </summary>
-        public IEnumerable<string> Enumerate_ChildFilePaths(string directoryPath)
-        {
-            var output = Directory.EnumerateFiles(directoryPath);
-            return output;
-        }
-
-        /// <inheritdoc cref="Enumerate_ChildFilePaths(string)"/>
-        public IEnumerable<string> Enumerate_ChildFilePaths(
-            string directoryPath,
-            string searchPattern)
-        {
-            var output = Directory.EnumerateFiles(
-                directoryPath,
-                searchPattern);
-
-            return output;
-        }
-
-        /// <inheritdoc cref="Enumerate_ChildFilePaths(string)"/>
-        public IEnumerable<string> Enumerate_ChildFilePaths_ByFileExtension(
-            string directoryPath,
-            string fileExtension)
-        {
-            var searchPattern = Instances.SearchPatternGenerator.Files_WithExtension(fileExtension);
-
-            return this.Enumerate_ChildFilePaths(
-                directoryPath,
-                searchPattern);
         }
 
         /// <summary>

@@ -6,7 +6,8 @@ using R5T.T0132;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface ITypeNameOperator : IFunctionalityMarker
+    public partial interface ITypeNameOperator : IFunctionalityMarker,
+        L0066.ITypeNameOperator
     {
         public string Append_ElementTypeRelationshipMarker(
             Type elementTypeParentType,
@@ -142,12 +143,6 @@ namespace R5T.L0053
                 : this.Get_PositionalTypeName_ForGenericMethodParameter(position)
                 ;
 
-            return output;
-        }
-
-        public string Get_TypeNameOf<T>(T instance)
-        {
-            var output = Instances.TypeOperator.Get_TypeNameOf(instance);
             return output;
         }
 

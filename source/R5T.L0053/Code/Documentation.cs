@@ -18,14 +18,6 @@ namespace R5T.L0053
         public static readonly object NoteOnAsynchronousSettings;
 
         /// <summary>
-        /// When equating two reference type instances, if one or both of the instances are null then a simple null check has determined whether the instances are equal.
-        /// In the case where one instance is null, but the other isn't, a null check has determined equality and the instances are not equal.
-        /// If both are null, then the null check has determined equality and the instances are equal.
-        /// Only in the case where both are not null does a null check not determine equality.
-        /// </summary>
-        public static readonly object NullCheckDeterminesEquality;
-
-        /// <summary>
         /// All parameters <em>should</em> have names, but somehow it's possible that they do not.
         /// </summary>
         public static readonly object ParametersShouldHaveParameterNames;
@@ -36,10 +28,5 @@ namespace R5T.L0053
         /// Otherwise, if the instances have the same type, a type check does not determine equality and you will need to equate instance values.
         /// </summary>
         public static readonly object TypeCheckDeterminesEquality;
-
-        /// <summary>
-        /// type name (fully qualified type name)
-        /// </summary>
-        public static readonly object TypeNameMeansFullyQualifiedTypeName;
     }
 }
