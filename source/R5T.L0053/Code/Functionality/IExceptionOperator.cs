@@ -17,16 +17,6 @@ namespace R5T.L0053
             return output;
         }
 
-        public Exception GetErrorDataReceivedException(DataReceivedEventArgs eventArgs)
-        {
-            var exception = new Exception(
-                Instances.ExceptionMessageOperator.Get_Message_IfMessageIsNull(
-                    eventArgs.Data,
-                    Instances.Messages.EventDataReceivedWasNull));
-
-            return exception;
-        }
-
         public Exception Get_UnknownElementTypeRelationshipException()
         {
             var output = new Exception("Unknown element type relationship.");

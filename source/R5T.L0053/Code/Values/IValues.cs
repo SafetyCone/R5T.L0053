@@ -28,11 +28,6 @@ namespace R5T.L0053
         public string Default_ParameterName => Default_ParameterName_Const;
 
         /// <summary>
-		/// The value for the command line to have no arguments is null.
-		/// </summary>
-		public string EmptyCommandArguments => null;
-
-        /// <summary>
         /// Version strings can have a 'v' as a leading version indicator (ex: v4.0.30319).
         /// </summary>
         public const char LeadingVersionIndicator_Constant = ICharacters.v_Lowercase_Constant;
