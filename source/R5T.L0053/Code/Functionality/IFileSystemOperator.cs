@@ -14,6 +14,14 @@ namespace R5T.L0053
         N000.IFileSystemOperator,
         N001.IFileSystemOperator
     {
-        
+        /// <inheritdoc cref="L0066.IFileSystemOperator.Copy_File(string, string)"/>
+        new public void Copy_File(
+            string sourceFilePath,
+            string destinationFilePath)
+        {
+            (this as L0066.IFileSystemOperator).Copy_File(
+                sourceFilePath,
+                destinationFilePath);
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace R5T.L0053
         {
             if (instance is T instanceAsT)
             {
-                var output = Instances.ActionOperator.Run(
+                var output = Instances.FunctionOperator.Run(
                     instanceAsT,
                     function);
 

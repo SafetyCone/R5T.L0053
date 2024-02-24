@@ -47,33 +47,9 @@ namespace R5T.L0053
             this.Run_Action_OkIfDefault(action);
         }
 
-        
-
         public Task Run(Func<Task> action)
         {
             return this.Run_Action(action);
-        }
-
-        public Task Run_Action(Func<Task> action)
-        {
-            return this.Run_Action_OkIfDefault(action);
-        }
-
-        public Task Run_OkIfDefault(
-            Func<Task> action = default)
-        {
-            return this.Run_Action_OkIfDefault(action);
-        }
-
-        public async Task Run_Action_OkIfDefault(
-            Func<Task> action = default)
-        {
-            if (action == default)
-            {
-                return;
-            }
-
-            await action();
         }
 
         public void Run<T1, T2>(

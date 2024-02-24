@@ -42,6 +42,7 @@ namespace R5T.L0053
         public static IFileStreamOperator FileStreamOperator => L0053.FileStreamOperator.Instance;
         public static IFileSystemOperator FileSystemOperator => L0053.FileSystemOperator.Instance;
         public static IFormatProviders FormatProviders => L0053.FormatProviders.Instance;
+        public static L0066.IFunctionOperator FunctionOperator => L0066.FunctionOperator.Instance;
         public static IIndexOperator IndexOperator => L0053.IndexOperator.Instance;
         public static IIndices Indices => L0053.Indices.Instance;
         public static Z0000.IIntegers Integers => Z0000.Integers.Instance;
