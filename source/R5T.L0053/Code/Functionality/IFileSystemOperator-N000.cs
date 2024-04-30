@@ -81,54 +81,6 @@ namespace R5T.L0053.N000
             }
         }
 
-        /// <summary>
-        /// Enumerates child directories in the directory (not including in any sub-directories).
-        /// </summary>
-        public IEnumerable<string> Enumerate_ChildDirectoryPaths(
-            string directoryPath)
-        {
-            var output = Directory.EnumerateDirectories(directoryPath);
-            return output;
-        }
-
-        /// <inheritdoc cref="Enumerate_ChildDirectoryPaths(string)"/>
-        public IEnumerable<string> Enumerate_ChildDirectoryPaths(
-            string directoryPath,
-            string searchPattern)
-        {
-            var output = Directory.EnumerateDirectories(
-                directoryPath,
-                searchPattern);
-
-            return output;
-        }
-
-        /// <summary>
-        /// Enumerates child files in the directory and any sub-directories.
-        /// </summary>
-        public IEnumerable<string> Enumerate_DescendantFilePaths(string directoryPath)
-        {
-            var output = Directory.EnumerateFiles(
-                directoryPath,
-                Instances.SearchPatterns.All,
-                SearchOption.AllDirectories);
-
-            return output;
-        }
-
-        /// <inheritdoc cref="Enumerate_DescendantFilePaths(string)"/>
-        public IEnumerable<string> Enumerate_DescendantFilePaths(
-            string directoryPath,
-            string searchPattern)
-        {
-            var output = Directory.EnumerateFiles(
-                directoryPath,
-                searchPattern,
-                SearchOption.AllDirectories);
-
-            return output;
-        }
-
         public void Make_ReadOnly(string filePath)
         {
             var fileAttributes = File.GetAttributes(filePath);
