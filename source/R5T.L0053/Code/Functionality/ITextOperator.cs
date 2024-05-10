@@ -28,31 +28,5 @@ namespace R5T.L0053
 
             return output;
         }
-
-        /// <summary>
-        /// Joins lines using the specified line separator into a single string of text.
-        /// </summary>
-        public string Join_Lines(
-            IEnumerable<string> lines,
-            string lineSeparator)
-        {
-            var output = StringOperator.Instance.Join(
-                lineSeparator,
-                lines);
-
-            return output;
-        }
-
-        /// <summary>
-        /// Joins lines using the <see cref="Z0000.IStrings.NewLine"/> separator into a single string of text.
-        /// </summary>
-        public string Join_Lines(IEnumerable<string> lines)
-        {
-            var output = this.Join_Lines(
-                lines,
-                Instances.Strings.NewLine);
-
-            return output;
-        }
     }
 }
