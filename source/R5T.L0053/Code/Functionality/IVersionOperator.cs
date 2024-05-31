@@ -92,7 +92,7 @@ namespace R5T.L0053
         /// <summary>
         /// Can handle version indicated strings (ex: v4.0.30319).
         /// </summary>
-        public Version Parse(string versionString)
+        new public Version Parse(string versionString)
         {
             var ensuredVersionString = versionString;
 

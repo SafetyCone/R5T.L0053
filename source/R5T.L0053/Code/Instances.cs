@@ -36,7 +36,6 @@ namespace R5T.L0053
         public static IFieldInfoOperations FieldInfoOperations => L0053.FieldInfoOperations.Instance;
         public static IFieldInfoOperator FieldInfoOperator => L0053.FieldInfoOperator.Instance;
         public static IFileExtensionOperator FileExtensionOperator => L0053.FileExtensionOperator.Instance;
-        public static IFileExtensions FileExtensions => L0053.FileExtensions.Instance;
         public static IFileNameOperator FileNameOperator => L0053.FileNameOperator.Instance;
         public static IFileModeOperator FileModeOperator => L0053.FileModeOperator.Instance;
         public static IFileStreamOperator FileStreamOperator => L0053.FileStreamOperator.Instance;
