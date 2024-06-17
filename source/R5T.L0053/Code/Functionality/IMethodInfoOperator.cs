@@ -37,6 +37,7 @@ namespace R5T.L0053
 
         public Type Get_ReturnType(MethodInfo methodInfo)
         {
+            // After upgrade to MetadataLoadContext 8.0, parsing of function pointer types is supported.
             var output = methodInfo.ReturnType;
             return output;
         }

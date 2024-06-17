@@ -95,8 +95,7 @@ namespace R5T.L0053
         /// </summary>
         public ParameterInfo[] Get_Parameters(MethodBase methodBase)
         {
-            // Note: parsing pointer types is not supported.
-            // System.NotSupportedException: 'Parsing function pointer types in signatures is not supported.'
+            // After upgrade to MetadataLoadContext 8.0, parsing of function pointer types is supported.
             var output = methodBase.GetParameters();
             return output;
         }

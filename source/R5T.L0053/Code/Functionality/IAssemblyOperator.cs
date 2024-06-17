@@ -12,30 +12,9 @@ using R5T.L0053.Extensions;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IAssemblyOperator : IFunctionalityMarker
+    public partial interface IAssemblyOperator : IFunctionalityMarker,
+        L0066.IAssemblyOperator
     {
-        public IEnumerable<MemberInfo> Enumerate_Members(Assembly assembly)
-        {
-            var output = this.Enumerate_Types(assembly)
-                .SelectMany(typeInfo => Instances.EnumerableOperator.Empty<MemberInfo>()
-                    .Append(typeInfo)
-                    .Append(
-                        Instances.TypeInfoOperator.Get_MemberInfos(typeInfo)
-                    )
-                )
-                ;
-
-            return output;
-        }
-
-        /// <summary>
-        /// Returns <see cref="Assembly.DefinedTypes"/>.
-        /// </summary>
-        public IEnumerable<TypeInfo> Enumerate_Types(Assembly assembly)
-        {
-            return assembly.DefinedTypes;
-        }
-
         public void Foreach_Member(
             Assembly assembly,
             Action<MemberInfo> action)
