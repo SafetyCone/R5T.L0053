@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 
 using R5T.T0131;
 
@@ -7,11 +6,9 @@ using R5T.T0131;
 namespace R5T.L0053
 {
     [ValuesMarker]
-    public partial interface IFormatProviders : IValuesMarker
+    public partial interface IFormatProviders : IValuesMarker,
+        L0066.IFormatProviders
     {
-        /// <summary>
-		/// The <see cref="CultureInfo.InvariantCulture"/> value.
-		/// </summary>
-		public IFormatProvider Default => CultureInfo.InvariantCulture;
+        
     }
 }

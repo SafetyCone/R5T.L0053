@@ -86,15 +86,6 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Digit" path="/definition"/>
-        /// </summary>
-        public bool Is_Digit(char character)
-        {
-            var output = Char.IsDigit(character);
-            return output;
-        }
-
-        /// <summary>
         /// <inheritdoc cref="Glossary.ForCharacterClasses.Letter" path="/definition"/>
         /// </summary>
         public bool Is_Letter(char character)

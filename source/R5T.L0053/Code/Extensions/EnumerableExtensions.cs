@@ -64,6 +64,17 @@ namespace System.Linq
                 appendixConstructors);
         }
 
+        public static IEnumerable<T> AppendIf_Values<T>(this IEnumerable<T> enumerable,
+            bool value,
+            T appendixIfTrue,
+            T appendixIfFalse)
+        {
+            return Instances.EnumerableOperator.AppendIf_Values(enumerable,
+                value,
+                appendixIfTrue,
+                appendixIfFalse);
+        }
+
         public static IEnumerable<T> AppendIf<T>(this IEnumerable<T> enumerable,
             bool value,
             IEnumerable<T> appendixIfTrue,
@@ -99,7 +110,7 @@ namespace System.Linq
             return Instances.EnumerableOperator.Is_Empty(items);
         }
 
-        public static IEnumerable<T> OrderAlphabetically<T>(this IEnumerable<T> items,
+        public static IEnumerable<T> OrderAlphabeticallyBy<T>(this IEnumerable<T> items,
             Func<T, string> keySelector)
         {
             var output = Instances.EnumerableOperator.OrderAlphabetically(items, keySelector);

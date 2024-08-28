@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-
+using System.Transactions;
 using R5T.N0000;
 
 using R5T.T0132;
@@ -39,6 +39,37 @@ namespace R5T.L0053
 
             var typeDeterminesEquality = !typesAreEqual;
             return typeDeterminesEquality;
+        }
+
+        public bool Type_Is<T, TInstance>(TInstance instance)
+        {
+            var type_T = typeof(T);
+
+            var output = this.Type_Is(
+                instance,
+                type_T);
+
+            return output;
+        }
+
+        public bool Type_Is<TInstance>(
+            TInstance instance,
+            Type type)
+        {
+            var type_Instance = instance.GetType();
+
+            var output = type_Instance == type;
+            return output;
+        }
+
+        public void Verify_Type_Is<T, TInstance>(TInstance instance)
+        {
+            var typeIs = this.Type_Is<T, TInstance>(instance);
+
+            if(!typeIs)
+            {
+                throw this.Get_InstanceTypeWasTypeException<T, TInstance>();
+            }
         }
 
         /// <summary>
@@ -87,15 +118,6 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// Note, includes the generic parameter count. Example: ExampleClass01`1.
-        /// </summary>
-        public string Get_Name(Type type)
-        {
-            var typeName = type.Name;
-            return typeName;
-        }
-
-        /// <summary>
         /// For a generic type parameter, get the actual name of the type parameter (example: "T").
         /// </summary>
         public string Get_GenericTypeParameterTypeName_ActualName(Type type)
@@ -111,55 +133,6 @@ namespace R5T.L0053
 
             var output = new Exception($"'{instanceTypeName}' instance was not a '{typeName}'.");
             return output;
-        }
-
-        public string Get_NamespacedTypeName<T>()
-        {
-            var typeOfT = typeof(T);
-
-            var output = this.Get_NamespacedTypeName(typeOfT);
-            return output;
-        }
-
-        public string Get_NamespacedTypeNameOf<T>(T value)
-        {
-            var typeOfValue = this.Get_TypeOf(value);
-
-            var output = this.Get_NamespacedTypeName(typeOfValue);
-            return output;
-        }
-
-        /// <summary>
-        /// Includes the generic parameter count (example: R5T.T0140.ExampleClass01`1),
-        /// and handles nested types (example: R5T.T0225.T000.NestedType_001_Parent+NestedType_001_Child).
-        /// <para>This replicates the behavior of <see cref="Type.FullName"/>.</para>
-        /// </summary>
-        /// <remarks>
-        /// Can handle nested types, using the nested type name separator used by <see cref="Type.FullName"/> (which is <see cref="ITokenSeparators.NestedTypeNameTokenSeparator"/>).
-        /// </remarks>
-        public string Get_NamespacedTypeName(Type type)
-        {
-            var isNestedType = this.Is_NestedType(type);
-            if (isNestedType)
-            {
-                var parentNamespacedTypeName = this.Get_NamespacedTypeName(type.DeclaringType);
-
-                var basicTypeName = this.Get_Name(type);
-
-                var output = $"{parentNamespacedTypeName}{Instances.TokenSeparators.NestedTypeNameTokenSeparator}{basicTypeName}";
-                return output;
-            }
-            else
-            {
-                var namespaceName = this.Get_NamespaceName(type);
-                var typeName = this.Get_Name(type);
-
-                var namespacedTypeName = Instances.NamespacedTypeNameOperator.Get_NamespacedTypeName(
-                    namespaceName,
-                    typeName);
-
-                return namespacedTypeName;
-            }
         }
 
         /// <summary>
@@ -415,12 +388,6 @@ namespace R5T.L0053
         public bool Is_MethodNestedType(Type type)
         {
             var output = type.DeclaringMethod is object;
-            return output;
-        }
-
-        public bool Is_NestedType(Type type)
-        {
-            var output = type.DeclaringType is object;
             return output;
         }
 

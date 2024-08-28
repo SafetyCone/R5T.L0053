@@ -6,7 +6,8 @@ using R5T.T0131;
 namespace R5T.L0053
 {
     [ValuesMarker]
-    public partial interface ITokenSeparators : IValuesMarker
+    public partial interface ITokenSeparators : IValuesMarker,
+        L0066.ITokenSeparators
     {
         /// <summary>
         /// <para>'`1' (two back-ticks)</para>
@@ -24,15 +25,6 @@ namespace R5T.L0053
 
         /// <inheritdoc cref="NamespaceTokenSeparator_Constant"/>
         public char NamespaceTokenSeparator => NamespaceTokenSeparator_Constant;
-
-        /// <summary>
-        /// <para><name>'+' (plus)</name></para>
-        /// Separates tokens in a nested type name (parent type name, child type name) from each other.
-        /// </summary>
-        public const char NestedTypeNameTokenSeparator_Constant = '+';
-
-        /// <inheritdoc cref="NestedTypeNameTokenSeparator_Constant"/>
-        public char NestedTypeNameTokenSeparator => NestedTypeNameTokenSeparator_Constant;
 
         /// <summary>
         /// <para><name>'~' (tilde)</name></para>

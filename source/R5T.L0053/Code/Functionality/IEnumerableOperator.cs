@@ -59,6 +59,19 @@ namespace R5T.L0053
             return output;
         }
 
+        public IEnumerable<T> AppendIf_Values<T>(IEnumerable<T> enumerable,
+            bool value,
+            T appendixIfTrue,
+            T appendixIfFalse)
+        {
+            var output = value
+                ? Instances.EnumerableOperator.Append(enumerable, appendixIfTrue)
+                : Instances.EnumerableOperator.Append(enumerable, appendixIfFalse)
+            ;
+
+            return output;
+        }
+
         public IEnumerable<T> AppendIf<T>(IEnumerable<T> enumerable,
             bool value,
             IEnumerable<T> appendixIfTrue,
@@ -79,21 +92,6 @@ namespace R5T.L0053
                 .SelectMany(enumerable => enumerable)
                 ;
 
-            return output;
-        }
-
-        public IEnumerable<T> Concatenate<T>(IEnumerable<IEnumerable<T>> enumerables)
-        {
-            var output = enumerables
-                .SelectMany(enumerable => enumerable)
-                ;
-
-            return output;
-        }
-
-        public IEnumerable<T> Concatenate<T>(params IEnumerable<T>[] enumerables)
-        {
-            var output = this.Concatenate(enumerables.AsEnumerable());
             return output;
         }
 

@@ -11,26 +11,9 @@ using R5T.L0053.Extensions;
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IDictionaryOperator : IFunctionalityMarker
+    public partial interface IDictionaryOperator : IFunctionalityMarker,
+        L0066.IDictionaryOperator
     {
-        public TValue Acquire_Value<TKey, TValue>(
-            IDictionary<TKey, TValue> dictionary,
-            TKey key,
-            Func<TValue> valueConstructor)
-        {
-            if (dictionary.ContainsKey(key))
-            {
-                var value = dictionary[key];
-                return value;
-            }
-            else
-            {
-                var value = valueConstructor();
-
-                return dictionary.AddAndReturn_Value(key, value);
-            }
-        }
-
         public async Task<TValue> Acquire_Value<TKey, TValue>(
             IDictionary<TKey, TValue> dictionary,
             TKey key,
@@ -52,52 +35,7 @@ namespace R5T.L0053
         public TValue AddAndReturn_Value<TKey, TValue>(IDictionary<TKey, TValue> dictionary,
             TKey key,
             TValue value)
-        {
-            dictionary.Add(key, value);
-
-            return value;
-        }
-
-        /// <summary>
-        /// If there is an expandable list of values for each key, add the value to either a new list (if the key does not already exist), or the existing list.
-        /// </summary>
-        public void Add_Value<TKey, TValue>(
-            IDictionary<TKey, List<TValue>> dictionary,
-            TKey key,
-            TValue value)
-        {
-            var hasValue = dictionary.TryGetValue(key, out List<TValue> list);
-            if (!hasValue)
-            {
-                list = new List<TValue>();
-
-                var added = dictionary.TryAdd(key, list);
-                if(!added)
-                {
-                    // Due to concurrency, between trying to get the value and adding this new value, things might have changed.
-                    list = dictionary[key];
-                }
-            }
-
-            list.Add(value);
-        }
-
-        public void Add_Value<TKey, TValue>(
-            IDictionary<TKey, IList<TValue>> dictionary,
-            Func<IList<TValue>> listConstructor,
-            TKey key,
-            TValue value)
-        {
-            var hasValue = dictionary.TryGetValue(key, out IList<TValue> list);
-            if (!hasValue)
-            {
-                list = listConstructor();
-
-                dictionary.Add(key, list);
-            }
-
-            list.Add(value);
-        }
+            => this.Add_AndReturnValue(dictionary, key, value);
 
         public Dictionary<TKey, TValue> Combine<TKey, TValue>(
             out Dictionary<TKey, TValue[]> duplicates,
