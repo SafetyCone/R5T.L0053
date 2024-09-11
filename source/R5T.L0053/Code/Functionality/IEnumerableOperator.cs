@@ -18,10 +18,30 @@ namespace R5T.L0053
         public IEnumerable<T> AppendIf<T>(
             IEnumerable<T> enumerable,
             bool value,
+            Func<IEnumerable<T>> appendix_Provider)
+        {
+            if(value)
+            {
+                var appendix = appendix_Provider();
+
+                var output = this.Append(
+                    enumerable,
+                    appendix);
+
+                return output;
+            }
+
+            // Else
+            return enumerable;
+        }
+
+        public IEnumerable<T> AppendIf<T>(
+            IEnumerable<T> enumerable,
+            bool value,
             IEnumerable<T> appendix)
         {
             var output = value
-                ? Instances.EnumerableOperator.Append(enumerable, appendix)
+                ? this.Append(enumerable, appendix)
                 : enumerable
                 ;
 
@@ -48,7 +68,7 @@ namespace R5T.L0053
         {
             var appendices = value
                 ? appendixConstructors.Select(x => x())
-                : Instances.EnumerableOperator.Empty<T>()
+                : this.Empty<T>()
                 ;
 
             var output = this.AppendIf(
@@ -65,8 +85,8 @@ namespace R5T.L0053
             T appendixIfFalse)
         {
             var output = value
-                ? Instances.EnumerableOperator.Append(enumerable, appendixIfTrue)
-                : Instances.EnumerableOperator.Append(enumerable, appendixIfFalse)
+                ? this.Append(enumerable, appendixIfTrue)
+                : this.Append(enumerable, appendixIfFalse)
             ;
 
             return output;
@@ -78,8 +98,8 @@ namespace R5T.L0053
             IEnumerable<T> appendixIfFalse)
         {
             var output = value
-                ? Instances.EnumerableOperator.Append(enumerable, appendixIfTrue)
-                : Instances.EnumerableOperator.Append(enumerable, appendixIfFalse)
+                ? this.Append(enumerable, appendixIfTrue)
+                : this.Append(enumerable, appendixIfFalse)
             ;
 
             return output;
@@ -158,14 +178,6 @@ namespace R5T.L0053
                     return output;
                 });
 
-            return output;
-        }
-
-        public IEnumerable<T> OrderAlphabetically<T>(
-            IEnumerable<T> items,
-            Func<T, string> keySelector)
-        {
-            var output = items.OrderBy(keySelector);
             return output;
         }
 

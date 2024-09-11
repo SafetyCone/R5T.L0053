@@ -33,6 +33,14 @@ namespace System.Linq
     {
         public static IEnumerable<T> AppendIf<T>(this IEnumerable<T> enumerable,
             bool value,
+            Func<IEnumerable<T>> appendix_Provider)
+            => Instances.EnumerableOperator.AppendIf(
+                enumerable,
+                value,
+                appendix_Provider);
+
+        public static IEnumerable<T> AppendIf<T>(this IEnumerable<T> enumerable,
+            bool value,
             IEnumerable<T> appendix)
         {
             return Instances.EnumerableOperator.AppendIf(
@@ -108,13 +116,6 @@ namespace System.Linq
         public static bool Is_Empty<T>(IEnumerable<T> items)
         {
             return Instances.EnumerableOperator.Is_Empty(items);
-        }
-
-        public static IEnumerable<T> OrderAlphabeticallyBy<T>(this IEnumerable<T> items,
-            Func<T, string> keySelector)
-        {
-            var output = Instances.EnumerableOperator.OrderAlphabetically(items, keySelector);
-            return output;
         }
     }
 }
