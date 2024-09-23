@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Transactions;
+
 using R5T.N0000;
 
 using R5T.T0132;
@@ -12,35 +12,6 @@ namespace R5T.L0053
     public partial interface ITypeOperator : IFunctionalityMarker,
         L0066.ITypeOperator
     {
-        /// <summary>
-        /// Chooses <see cref="TypeCheckDeterminesEquality_Instance{T}(T, T, out bool)"/> as the default.
-        /// </summary>
-        /// <remarks>
-        /// <inheritdoc cref="Documentation.TypeCheckDeterminesEquality" path="/summary"/>
-        /// </remarks>
-        public bool TypeCheckDeterminesEquality<T>(T a, T b, out bool typesAreEqual)
-        {
-            var output = this.TypeCheckDeterminesEquality_Instance(a, b, out typesAreEqual);
-            return output;
-        }
-
-        /// <summary>
-        /// Use the type returned by the <see cref="object.GetType"/> method of each instance to determine type by equality.
-        /// </summary>
-        /// <remarks>
-        /// <inheritdoc cref="Documentation.TypeCheckDeterminesEquality" path="/summary"/>
-        /// </remarks>
-        public bool TypeCheckDeterminesEquality_Instance<T>(T a, T b, out bool typesAreEqual)
-        {
-            var typeA = a.GetType();
-            var typeB = b.GetType();
-
-            typesAreEqual = typeA == typeB;
-
-            var typeDeterminesEquality = !typesAreEqual;
-            return typeDeterminesEquality;
-        }
-
         public bool Type_Is<T, TInstance>(TInstance instance)
         {
             var type_T = typeof(T);

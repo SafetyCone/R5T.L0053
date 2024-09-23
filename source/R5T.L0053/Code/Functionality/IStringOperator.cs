@@ -13,29 +13,6 @@ namespace R5T.L0053
     public partial interface IStringOperator : IFunctionalityMarker,
         L0066.IStringOperator
     {
-        public int CountOf(
-            char character,
-            string @string)
-        {
-            var output = @string
-                .Where(c => c == character)
-                .Count();
-
-            return output;
-        }
-
-        public string Empty_IfNull(string @string)
-        {
-            var isNull = this.Is_Null(@string);
-
-            var output = isNull
-                ? Instances.Strings.Empty
-                : @string
-                ;
-
-            return output;
-        }
-
         public bool EndsWith_Any(
             string @string,
             params string[] endings)

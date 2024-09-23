@@ -19,21 +19,10 @@ namespace R5T.L0053
             IEnumerable<T> enumerable,
             bool value,
             Func<IEnumerable<T>> appendix_Provider)
-        {
-            if(value)
-            {
-                var appendix = appendix_Provider();
-
-                var output = this.Append(
-                    enumerable,
-                    appendix);
-
-                return output;
-            }
-
-            // Else
-            return enumerable;
-        }
+            => this.Append_If(
+                enumerable,
+                value,
+                appendix_Provider);
 
         public IEnumerable<T> AppendIf<T>(
             IEnumerable<T> enumerable,
