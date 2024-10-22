@@ -51,7 +51,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Alphanumeric" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Alphanumeric" path="/definition"/>
         /// </summary>
         public bool Is_Alphanumeric(char character)
         {
@@ -69,7 +69,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Character" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Character" path="/definition"/>
         /// </summary>
         public bool Is_Character(char character)
         {
@@ -77,7 +77,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Control" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Control" path="/definition"/>
         /// </summary>
         public bool Is_Control(char character)
         {
@@ -86,7 +86,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Letter" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Letter" path="/definition"/>
         /// </summary>
         public bool Is_Letter(char character)
         {
@@ -95,7 +95,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Alphanumeric" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Alphanumeric" path="/definition"/>
         /// </summary>
         public bool Is_LetterOrDigit(char character)
         {
@@ -104,7 +104,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Lowercase" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Lowercase" path="/definition"/>
         /// </summary>
         public bool Is_Lowercase(char character)
         {
@@ -113,7 +113,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.None" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.None" path="/definition"/>
         /// </summary>
         public bool Is_None(char character)
         {
@@ -121,7 +121,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Number" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Number" path="/definition"/>
         /// </summary>
         public bool Is_Number(char character)
         {
@@ -130,7 +130,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Punctuation" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Punctuation" path="/definition"/>
         /// </summary>
         public bool Is_Punctuation(char character)
         {
@@ -139,7 +139,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Separator" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Separator" path="/definition"/>
         /// </summary>
         public bool Is_Separator(char character)
         {
@@ -148,7 +148,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Symbol" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Symbol" path="/definition"/>
         /// </summary>
         public bool Is_Symbol(char character)
         {
@@ -157,7 +157,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// <inheritdoc cref="Glossary.ForCharacterClasses.Uppercase" path="/definition"/>
+        /// <inheritdoc cref="Glossary.For_CharacterClasses.Uppercase" path="/definition"/>
         /// </summary>
         public bool Is_Uppercase(char character)
         {
