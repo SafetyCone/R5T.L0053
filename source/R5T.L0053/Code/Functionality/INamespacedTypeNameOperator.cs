@@ -11,18 +11,6 @@ namespace R5T.L0053
         L0066.INamespacedTypeNameOperator
     {
         /// <summary>
-        /// Handles generic type names.
-        /// </summary>
-        public string Get_NamespacedTypeName_FromFullName(string fullTypeName)
-        {
-            var parts = fullTypeName.Split(
-                Instances.Characters.OpenBracket_Correct);
-
-            var namespacedTypeName = parts.First();
-            return namespacedTypeName;
-        }
-
-        /// <summary>
         /// Note: will remove trailing array symbols if the element type is generic.
         /// </summary>
         public string Get_Substring_Upto_GenericTypeParameterCount(string namespacedTypeName)
