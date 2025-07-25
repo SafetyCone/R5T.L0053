@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using R5T.T0132;
+using R5T.T0143;
 
 using R5T.L0053.Extensions;
 
@@ -13,6 +14,14 @@ namespace R5T.L0053
     public partial interface IStringOperator : IFunctionalityMarker,
         L0066.IStringOperator
     {
+#pragma warning disable IDE1006 // Naming Styles
+
+        [Ignore]
+        public L0066.IStringOperator _L0066 => L0066.StringOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
+
         public bool EndsWith_Any(
             string @string,
             params string[] endings)

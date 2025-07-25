@@ -9,8 +9,8 @@ using R5T.L0053.Extensions;
 namespace R5T.L0053
 {
     [ValuesMarker]
-    public partial interface IXmlWriterSettingsSets : IValuesMarker,
-        L0066.IXmlWriterSettingsSets
+    public partial interface IXmlWriterSettingsSet : IValuesMarker,
+        L0066.IXmlWriterSettingsSet
     {
         /// <summary>
         /// The default writer settings contain the values set by the parameterless constructor. 

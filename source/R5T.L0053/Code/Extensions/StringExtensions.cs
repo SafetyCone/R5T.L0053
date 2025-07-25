@@ -25,28 +25,6 @@ namespace R5T.L0053.Extensions
             return Instances.StringOperator.Except_FirstTwo(@string);
         }
 
-        public static string Join(this IEnumerable<string> strings,
-            char separator)
-        {
-            return Instances.StringOperator.Join(
-                separator,
-                strings);
-        }
-
-        public static string Join(this IEnumerable<string> strings,
-            string separator)
-        {
-            return Instances.StringOperator.Join(
-                separator,
-                strings);
-        }
-
-        public static string Join(this IEnumerable<string> strings)
-        {
-            var output = strings.Join(Instances.Strings.Empty);
-            return output;
-        }
-
         public static IEnumerable<string> Remove_EmptyOrNull(this IEnumerable<string> strings)
         {
             return Instances.StringOperator.Remove_EmptyOrNull(strings);

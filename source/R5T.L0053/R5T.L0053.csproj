@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <NoWarn>1573;1587;1591</NoWarn>
+    <NoWarn>1573;1587;1591;IDE0130</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -17,5 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\R5T.L0066\source\R5T.L0066\R5T.L0066.csproj" />
     <ProjectReference Include="..\..\..\R5T.Z0000\source\R5T.Z0000\R5T.Z0000.csproj" />
+    <ProjectReference Include="..\..\..\..\Functionairy\F10Y.L0005\source\F10Y.L0005\F10Y.L0005.csproj" />
   </ItemGroup>
 </Project>

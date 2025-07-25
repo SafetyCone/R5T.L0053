@@ -1,9 +1,9 @@
 using System;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 
 using R5T.T0132;
+
+using IXElementOperator_Common = F10Y.L0000.IXElementOperator;
 
 
 namespace R5T.L0053
@@ -14,7 +14,7 @@ namespace R5T.L0053
     {
         /// <inheritdoc cref="Create_Element_FromText(string, LoadOptions)" path="/summary"/>
         /// <remarks>
-        /// This might be a bad signature, since it could easily be ambiguous with <see cref="L0066.IXElementOperator.Create_Element(string)"/>.
+        /// This might be a bad signature, since it could easily be ambiguous with <see cref="IXElementOperator_Common.Create_Element(string)"/>.
         /// </remarks>
         public XElement Create_Element(
             string xmlText,
@@ -28,7 +28,7 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// Quality-of-life overload for <see cref="L0066.IXElementOperator.Parse(string, LoadOptions)"/>.
+        /// Quality-of-life overload for <see cref="IXElementOperator_Common.Parse(string, LoadOptions)"/>.
         /// </summary>
         public new XElement Create_Element_FromText(
             string xmlText,

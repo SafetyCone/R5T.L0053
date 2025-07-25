@@ -60,7 +60,7 @@ namespace R5T.L0053
         public MemberInfo[] Get_Members(Assembly assembly)
         {
             var output = this.Enumerate_Members(assembly)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -68,7 +68,7 @@ namespace R5T.L0053
         public TypeInfo[] Get_Types(Assembly assembly)
         {
             var output = this.Enumerate_Types(assembly)
-                .Now();
+                .ToArray();
 
             return output;
         }

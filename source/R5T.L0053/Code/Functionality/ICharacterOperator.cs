@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using R5T.T0132;
+using R5T.T0143;
 
 using R5T.L0053.Extensions;
 
@@ -13,28 +14,15 @@ namespace R5T.L0053
 {
     [FunctionalityMarker]
     public partial interface ICharacterOperator : IFunctionalityMarker,
-        L0066.ICharacterOperator
+        F10Y.L0005.ICharacterOperator
     {
-        public string Display(char character)
-        {
-            return character switch
-            {
-                ' ' => @"\space",
-                '\t' => @"\t",
-                '\n' => @"\n",
-                '\r' => @"\r",
-                _ => character.ToString()
-            };
-        }
+#pragma warning disable IDE1006 // Naming Styles
 
-        public string DisplayCharacters(string @string)
-        {
-            var output = @string
-                .Select(this.Display)
-                .Join();
+        [Ignore]
+        public F10Y.L0005.ICharacterOperator _F10Y_L0005 => F10Y.L0005.CharacterOperator.Instance;
 
-            return output;
-        }
+#pragma warning restore IDE1006 // Naming Styles
+
 
         public string Get_String(IEnumerable<char> characters)
         {

@@ -42,7 +42,7 @@ namespace R5T.L0053
         public static IFileSystemOperator FileSystemOperator => L0053.FileSystemOperator.Instance;
         public static IFormatProviders FormatProviders => L0053.FormatProviders.Instance;
         public static L0066.IFunctionOperator FunctionOperator => L0066.FunctionOperator.Instance;
-        public static IIndexOperator IndexOperator => L0053.IndexOperator.Instance;
+        public static L0066.IIndexOperator IndexOperator => L0066.IndexOperator.Instance;
         public static IIndices Indices => L0053.Indices.Instance;
         public static Z0000.IIntegers Integers => Z0000.Integers.Instance;
         public static IIntegralTypes IntegralTypes => L0053.IntegralTypes.Instance;
@@ -53,7 +53,7 @@ namespace R5T.L0053
         public static IMethodNameOperator MethodNameOperator => L0053.MethodNameOperator.Instance;
         public static INamespacedTypeNameOperator NamespacedTypeNameOperator => L0053.NamespacedTypeNameOperator.Instance;
         public static INamespacedTypeNames NamespacedTypeNames => L0053.NamespacedTypeNames.Instance;
-        public static INullOperator NullOperator => L0053.NullOperator.Instance;
+        public static L0066.INullOperator NullOperator => L0066.NullOperator.Instance;
         public static IPathOperator PathOperator => L0053.PathOperator.Instance;
         public static IPaths Paths => L0053.Paths.Instance;
         public static IPropertyInfoOperations PropertyInfoOperations => L0053.PropertyInfoOperations.Instance;
@@ -75,6 +75,6 @@ namespace R5T.L0053
         public static IValues Values => L0053.Values.Instance;
         public static IVersionOperator VersionOperator => L0053.VersionOperator.Instance;
         public static IXmlWriterSettingsOperator XmlWriterSettingsOperator => L0053.XmlWriterSettingsOperator.Instance;
-        public static IXmlWriterSettingsSets XmlWriterSettingsSets => L0053.XmlWriterSettingsSets.Instance;
+        public static IXmlWriterSettingsSet XmlWriterSettingsSet => L0053.XmlWriterSettingsSet.Instance;
     }
 }

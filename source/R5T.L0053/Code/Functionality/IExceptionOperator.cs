@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
@@ -10,11 +11,13 @@ namespace R5T.L0053
     public partial interface IExceptionOperator : IFunctionalityMarker,
         L0066.IExceptionOperator
     {
-        public Exception Get_Exception(string message)
-        {
-            var output = new Exception(message);
-            return output;
-        }
+#pragma warning disable IDE1006 // Naming Styles
+
+        [Ignore]
+        public L0066.IExceptionOperator _L0066 => L0066.ExceptionOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
 
         public Exception Get_UnknownElementTypeRelationshipException()
         {

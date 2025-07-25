@@ -43,6 +43,7 @@ namespace R5T.L0053
 
             var index = indexOfGenericTypeParameterCountTokenSeparator + 1;
             var characterAtIndex = namespacedTypeName[index];
+
             while(Instances.CharacterOperator.Is_Digit(characterAtIndex))
             {
                 index++;

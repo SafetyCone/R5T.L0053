@@ -53,7 +53,7 @@ namespace R5T.L0053
         public string[] Get_AssemblyFilePaths(string directoryPath)
         {
             var output = this.Enumerate_AssemblyFilePaths(directoryPath)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -61,7 +61,7 @@ namespace R5T.L0053
         public string[] Get_AssemblyFilePaths(IEnumerable<string> directoryPaths)
         {
             var output = this.Enumerate_AssemblyFilePaths(directoryPaths)
-                .Now();
+                .ToArray();
 
             return output;
         }

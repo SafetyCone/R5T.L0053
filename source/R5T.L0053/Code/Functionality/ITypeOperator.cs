@@ -216,7 +216,7 @@ namespace R5T.L0053
         {
             var output = this.Get_GenericTypeInputs(type)
                 .Where(this.Is_GenericArgument)
-                .Now();
+                .ToArray();
 
             return output;
         }

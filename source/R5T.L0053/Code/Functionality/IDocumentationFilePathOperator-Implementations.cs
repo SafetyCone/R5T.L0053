@@ -47,7 +47,7 @@ namespace R5T.L0053.Implementations
             string directoryPath)
         {
             var output = this.Enumerate_DocumentationFilePaths_AssemblyPaired(directoryPath)
-                .Now();
+                .ToArray();
 
             return output;
         }

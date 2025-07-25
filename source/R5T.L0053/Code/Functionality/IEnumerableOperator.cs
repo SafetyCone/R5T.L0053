@@ -193,7 +193,7 @@ namespace R5T.L0053
                 }
             }
 
-            var output = Internal().Now();
+            var output = Internal().ToArray();
             return output;
         }
     }

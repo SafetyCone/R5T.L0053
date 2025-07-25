@@ -3,15 +3,30 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
 
+using F10Y.T0011;
 using R5T.T0132;
 
 
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IXmlWriterSettingsOperator : IFunctionalityMarker
+    public partial interface IXmlWriterSettingsOperator : IFunctionalityMarker,
+        F10Y.L0005.IXmlWriterSettingsOperator
     {
-        public Task DescibeTo(
+#pragma warning disable IDE1006 // Naming Styles
+
+        [Ignore]
+        public F10Y.L0005.IXmlWriterSettingsOperator _F10Y_L0005 => F10Y.L0005.XmlWriterSettingsOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        public void Configure(Action<XmlWriterSettings> configure)
+        {
+
+        }
+
+        public Task DescribeTo(
             XmlWriterSettings settings,
             TextWriter writer)
         {
@@ -20,7 +35,7 @@ namespace R5T.L0053
             return writer.WriteAsync(text);
         }
 
-        public void DescibeTo_Synchronous(
+        public void DescribeTo_Synchronous(
             XmlWriterSettings settings,
             TextWriter writer)
         {
@@ -29,41 +44,11 @@ namespace R5T.L0053
             writer.Write(text);
         }
 
-        public void DescibeTo_Console_Synchronous(XmlWriterSettings settings)
+        public void DescribeTo_Console_Synchronous(XmlWriterSettings settings)
         {
-            this.DescibeTo_Synchronous(
+            this.DescribeTo_Synchronous(
                 settings,
                 Console.Out);
-        }
-
-        public string DescribeTo_Text(XmlWriterSettings settings)
-        {
-            var indentCharacters = Instances.CharacterOperator.DisplayCharacters(
-                settings.IndentChars);
-
-            var newLineCharacters = Instances.CharacterOperator.DisplayCharacters(
-                settings.NewLineChars);
-
-            var lines = Instances.EnumerableOperator.From(
-                $"{settings.Async}: Asynchronous",
-                $"{settings.CheckCharacters}: Check characters",
-                $"{settings.CloseOutput}: Close output",
-                $"{settings.ConformanceLevel}: Conformance level",
-                $"{settings.DoNotEscapeUriAttributes}: Do not escape URI attributes",
-                $"{settings.Encoding.EncodingName}: Encoding",
-                $"{settings.Indent}: Indent",
-                $"{indentCharacters}: Indent characters",
-                $"{settings.NamespaceHandling}: Namespace handling",
-                $"{newLineCharacters}: New-line characters",
-                $"{settings.NewLineHandling}: New-line handling",
-                $"{settings.NewLineOnAttributes}: New-line on attributes",
-                $"{settings.OmitXmlDeclaration}: Omit XML declaration",
-                $"{settings.OutputMethod}: Output method",
-                $"{settings.WriteEndDocumentOnClose}: Write end-of-document on close"
-            );
-
-            var text = Instances.TextOperator.Join_Lines(lines);
-            return text;
         }
 
         /// <summary>
