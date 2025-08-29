@@ -107,37 +107,6 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// The parent of a nested type is the type's <see cref="Type.DeclaringType"/>.
-        /// </summary>
-        public Type Get_NestedTypeParentType(Type type)
-        {
-            var output = type.DeclaringType;
-            return output;
-        }
-
-        /// <summary>
-        /// Chooses <see cref="Get_GenericTypeInputs_NotInParents(Type)"/> as the default, since in general all we really want are the *new* generic inputs of the type.
-        /// If you want all the raw generic inputs of the type, use <see cref="Get_GenericTypeInputs_OfType(Type)"/>.
-        /// </summary>
-        public Type[] Get_GenericTypeInputs(Type type)
-        {
-            var output = this.Get_GenericTypeInputs_NotInParents(type);
-            return output;
-        }
-
-        /// <summary>
-        /// Get generic type inputs (either arguments, which are specified types like System.String, or parameters, which are unspecified like TKey).
-        /// Note: gets the generic type inputs of the type (without handling any complications due to nesting, where the type might share generic inputs from it's nested parent type).
-        /// </summary>
-        public Type[] Get_GenericTypeInputs_OfType(Type type)
-        {
-            // The GetGenericArguments() method returns both type parameters of a generic type definition,
-            // and the generic type arguments of a closed generic type.
-            var output = type.GetGenericArguments();
-            return output;
-        }
-
-        /// <summary>
         /// Get generic type inputs (either arguments, which are specified types like System.String, or parameters, which are unspecified like TKey).
         /// Note: gets the generic type inputs of the type (without handling any complications due to nesting, where the type might share generic inputs from it's nested parent type).
         /// </summary>
@@ -148,35 +117,6 @@ namespace R5T.L0053
                 .ToArray();
 
             return output;
-        }
-
-        /// <summary>
-        /// Get generic type inputs (either arguments, which are specified types like System.String, or parameters, which are unspecified like TKey).
-        /// Note: handles any complications due to nesting, such as where the type might share generic inputs from it's nested parent type, by only returning generic types inputs that are not generic type inputs of any nested parents.
-        /// </summary>
-        public Type[] Get_GenericTypeInputs_NotInParents(Type type)
-        {
-            var genericTypeInputsOfType = this.Get_GenericTypeInputs_OfType(type);
-
-            var isNested = this.Is_NestedType(type);
-            if(isNested)
-            {
-                var nestedParentType = this.Get_NestedTypeParentType(type);
-
-                // Get the generic type inputs of the parent, including any that are of the parent's parent.
-                var nestedParentGenericTypeInputs = this.Get_GenericTypeInputs_OfType(nestedParentType);
-
-                // New generic types inputs in this type that are not in the parent, which are assumed to be just those types after the generic types of the parent.
-                var output = genericTypeInputsOfType.Skip(nestedParentGenericTypeInputs.Length)
-                    .ToArray();
-
-                return output;
-            }
-            else
-            {
-                // If not nested, just return all generic type inputs of the type.
-                return genericTypeInputsOfType;
-            }
         }
 
         //public Type[] Get_GenericTypeInputs_IncludingNestedParents(Type type)
@@ -319,16 +259,6 @@ namespace R5T.L0053
             var isGenericParameter = this.Is_GenericParameter(type);
 
             var output = !isGenericParameter;
-            return output;
-        }
-
-        /// <summary>
-        /// Returns <see cref="Type.IsGenericParameter"/>,
-        /// whic is true for both generic type parameter types and generic method parameter types.
-        /// </summary>
-        public bool Is_GenericParameter(Type type)
-        {
-            var output = type.IsGenericParameter;
             return output;
         }
 

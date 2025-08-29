@@ -5,108 +5,24 @@ using System.Reflection;
 using R5T.N0000;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IMethodBaseOperator : IFunctionalityMarker
+    public partial interface IMethodBaseOperator : IFunctionalityMarker,
+        F10Y.L0000.IMethodBaseOperator,
+        F10Y.L0001.L000.IMethodBaseOperator
     {
-        public Type Get_DeclaringType(MethodBase methodBase)
-        {
-            var output = methodBase.DeclaringType;
-            return output;
-        }
+#pragma warning disable IDE1006 // Naming Styles
 
-        public Type[] Get_GenericTypeInputs_OfDeclaringType(MethodBase methodBase)
-        {
-            var declaringType = this.Get_DeclaringType(methodBase);
+        [Ignore]
+        public F10Y.L0000.IMethodBaseOperator _F10Y_L0000 => F10Y.L0000.MethodBaseOperator.Instance;
 
-            var output = Instances.TypeOperator.Get_GenericTypeInputs(declaringType);
-            return output;
-        }
+        [Ignore]
+        public F10Y.L0001.L000.IMethodBaseOperator _F10Y_L0001_L000 => F10Y.L0001.L000.MethodBaseOperator.Instance;
 
-        public Type[] Get_GenericTypeInputs_OfMethodOnly(MethodBase methodBase)
-        {
-            var allGenericTypeInputs = this.Get_GenericTypeInputs_All(methodBase);
-
-            var declaringTypeGenericTypeInputs = this.Get_GenericTypeInputs_OfDeclaringType(methodBase);
-
-            var output = allGenericTypeInputs
-                .Except(declaringTypeGenericTypeInputs,
-                    NameBasedTypeEqualityComparer.Instance)
-                .ToArray();
-
-            return output;
-        }
-
-        /// <summary>
-        /// Gets all generic type inputs of the method.
-        /// This includes the generic type inputs of the declaring type of the method, and the method itself.
-        /// </summary>
-        public Type[] Get_GenericTypeInputs_All(MethodBase methodBase)
-        {
-            var output = methodBase.GetGenericArguments();
-            return output;
-        }
-
-        /// <summary>
-        /// Gets the generic type inputs of a method.
-        /// </summary>
-        public Type[] Get_GenericTypeInputs(MethodBase methodBase)
-        {
-            var output = this.Get_GenericTypeInputs_All(methodBase);
-            return output;
-        }
-
-        /// <summary>
-        /// Gets all generic type parameters of the method.
-        /// This includes the generic type parameters of the declaring type of the method, and the method itself.
-        /// </summary>
-        public Type[] Get_GenericTypeParameters_All(MethodBase methodBase)
-        {
-            var output = methodBase.GetGenericArguments()
-                .Where(Instances.TypeOperator.Is_GenericParameter)
-                .ToArray();
-
-            return output;
-        }
-
-        public Type[] Get_GenericTypeParameters(MethodBase methodBase)
-        {
-            var output = this.Get_GenericTypeParameters_All(methodBase);
-            return output;
-        }
-
-        public ParameterInfo[] Get_InputParameters(MethodBase methodBase)
-        {
-            var output = methodBase.GetParameters();
-            return output;
-        }
-
-        public string Get_MethodName(MethodBase methodBase)
-        {
-            var output = methodBase.Name;
-            return output;
-        }
-
-        /// <summary>
-        /// Returns the result of <see cref="MethodBase.GetParameters()"/>.
-        /// </summary>
-        public ParameterInfo[] Get_Parameters(MethodBase methodBase)
-        {
-            // After upgrade to MetadataLoadContext 8.0, parsing of function pointer types is supported.
-            var output = methodBase.GetParameters();
-            return output;
-        }
-
-        /// <summary>
-        /// Determines whether the method has any generic type parameters.
-        /// </summary>
-        public bool Is_Generic(MethodBase methodBase)
-        {
-            var output = methodBase.IsGenericMethod;
-            return output;
-        }
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

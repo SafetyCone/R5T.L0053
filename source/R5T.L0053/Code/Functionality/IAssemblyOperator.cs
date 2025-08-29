@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
@@ -12,6 +13,14 @@ namespace R5T.L0053
     public partial interface IAssemblyOperator : IFunctionalityMarker,
         L0066.IAssemblyOperator
     {
+#pragma warning disable IDE1006 // Naming Styles
+
+        [Ignore]
+        public L0066.IAssemblyOperator _L0066 => L0066.AssemblyOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
+
         public void Foreach_Member(
             Assembly assembly,
             Action<MemberInfo> action)
@@ -53,14 +62,6 @@ namespace R5T.L0053
             var output = assembly.Location;
 
             this.Verify_NotDefaultAssemblyFilePath(output);
-
-            return output;
-        }
-
-        public MemberInfo[] Get_Members(Assembly assembly)
-        {
-            var output = this.Enumerate_Members(assembly)
-                .ToArray();
 
             return output;
         }

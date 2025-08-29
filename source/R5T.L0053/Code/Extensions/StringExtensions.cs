@@ -38,25 +38,5 @@ namespace R5T.L0053.Extensions
 
             return output;
         }
-
-        public static string Wrap(this string @string,
-            string prefix,
-            string suffix)
-        {
-            return Instances.StringOperator.Wrap(
-                @string,
-                prefix,
-                suffix);
-        }
-
-        public static string Wrap(this string @string,
-            char prefix,
-            char suffix)
-        {
-            return Instances.StringOperator.Wrap(
-                @string,
-                prefix,
-                suffix);
-        }
     }
 }

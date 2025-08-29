@@ -86,14 +86,6 @@ namespace R5T.L0053
             return output;
         }
 
-        public string Append_NestedTypeName(
-            string nestedParentTypeName,
-            string typeName)
-        {
-            var output = $"{nestedParentTypeName}{Instances.TokenSeparators.NestedTypeNameTokenSeparator}{typeName}";
-            return output;
-        }
-
         public string Append_OutputTypeName(
             string typeName,
             string outputTypeName)

@@ -1,34 +1,33 @@
 using System;
-using System.ComponentModel;
-using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IMethodInfoOperator : IFunctionalityMarker
+    public partial interface IMethodInfoOperator : IFunctionalityMarker,
+        F10Y.L0000.IMethodInfoOperator
     {
-        /// <summary>
-        /// Gets the generic type inputs of a method.
-        /// </summary>
-        public Type[] Get_GenericTypeInputs(MethodInfo methodInfo)
-        {
-            var output = Instances.MethodBaseOperator.Get_GenericTypeInputs(methodInfo);
-            return output;
-        }
+#pragma warning disable IDE1006 // Naming Styles
 
-        /// <inheritdoc cref="IMethodBaseOperator.Get_GenericTypeParameters(MethodBase)"/>
+        [Ignore]
+        public F10Y.L0000.IMethodInfoOperator _F10Y_L0000 => F10Y.L0000.MethodInfoOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        /// <inheritdoc cref="F10Y.L0001.L000.IMethodBaseOperator.Get_GenericTypeParameters(MethodBase)"/>
         public Type[] Get_GenericTypeParameters(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Get_GenericTypeParameters(methodInfo);
             return output;
         }
 
-        /// <inheritdoc cref="IMethodBaseOperator.Get_InputParameters(MethodBase)"/>
+        /// <inheritdoc cref="F10Y.L0001.L000.IMethodBaseOperator.Get_InputParameters(MethodBase)"/>
         public ParameterInfo[] Get_InputParameters(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Get_InputParameters(methodInfo);
@@ -68,7 +67,7 @@ namespace R5T.L0053
             return output;
         }
 
-        /// <inheritdoc cref="IMethodBaseOperator.Is_Generic(MethodBase)"/>
+        /// <inheritdoc cref="F10Y.L0001.L000.IMethodBaseOperator.Is_Generic(MethodBase)"/>
         public bool Is_Generic(MethodInfo methodInfo)
         {
             var output = Instances.MethodBaseOperator.Is_Generic(methodInfo);
