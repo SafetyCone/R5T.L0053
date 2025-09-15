@@ -79,11 +79,5 @@ namespace R5T.L0053
                 out duplicates,
                 dictionaries.AsEnumerable());
         }
-
-        public Dictionary<TKey, TValue> Empty<TKey, TValue>()
-        {
-            var output = new Dictionary<TKey, TValue>();
-            return output;
-        }
     }
 }
