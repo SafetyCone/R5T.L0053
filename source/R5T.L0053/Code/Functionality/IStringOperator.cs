@@ -62,18 +62,6 @@ namespace R5T.L0053
         }
 
         /// <summary>
-        /// Chooses <see cref="F10Y.L0001.L000.IStringOperator.Partition_Exclusive(int, string)"/> as the default.
-        /// </summary>
-        public (string firstPart, string secondPart) Split(
-            int index,
-            string @string)
-        {
-            return this.Partition_Exclusive(
-                index,
-                @string);
-        }
-
-        /// <summary>
         /// Partitions the string based on an index,
         /// or returns the whole input string as the first part if the input index is the <see cref="L0066.IIndices.NotFound"/> value (as determined by <see cref="F10Y.L0000.IStringOperator.Is_Found(int)"/>).
         /// </summary>

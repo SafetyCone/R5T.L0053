@@ -16,16 +16,6 @@ namespace R5T.L0053.Extensions
                 value);
         }
 
-        public static void Add_Value<TKey, TValue>(this IDictionary<TKey, List<TValue>> dictionary,
-            TKey key,
-            TValue value)
-        {
-            Instances.DictionaryOperator.Add_Value(
-                dictionary,
-                key,
-                value);
-        }
-
         public static void Add_Value<TKey, TValue>(this IDictionary<TKey, IList<TValue>> dictionary,
             Func<IList<TValue>> listConstructor,
             TKey key,
