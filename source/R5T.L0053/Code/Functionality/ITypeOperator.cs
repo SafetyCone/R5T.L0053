@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-using R5T.N0000;
+using F10Y.L0001.L000;
 
 using R5T.T0132;
 
@@ -70,7 +70,7 @@ namespace R5T.L0053
         {
             if (instance is T instanceAsT)
             {
-                var output = Instances.FunctionOperator.Run(
+                var output = Instances.FunctionOperator.Run_Function(
                     instanceAsT,
                     function);
 
