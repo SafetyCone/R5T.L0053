@@ -2,13 +2,23 @@ using System;
 using System.Collections.Generic;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
 {
     [FunctionalityMarker]
-    public partial interface IPredicateOperator : IFunctionalityMarker
+    public partial interface IPredicateOperator : IFunctionalityMarker,
+        L0066.IPredicateOperator
     {
+#pragma warning disable IDE1006 // Naming Styles
+
+        [Ignore]
+        L0066.IPredicateOperator _L0066 => L0066.PredicateOperator.Instance;
+
+#pragma warning restore IDE1006 // Naming Styles
+
+
         /// <summary>
         /// <inheritdoc cref="Get_Equals{T}(T)" path="/summary"/>
         /// This implementation is optimized for types implementing <see cref="IEquatable{T}"/>.
