@@ -301,12 +301,6 @@ namespace R5T.L0053
             return isOpen;
         }
 
-        public bool Is_Public(Type type)
-        {
-            var output = type.IsPublic;
-            return output;
-        }
-
         public bool Is_UnspecifiedGenericTypeParameterValue(Type type)
         {
             var output = type.IsGenericTypeParameter;

@@ -13,7 +13,7 @@ namespace R5T.L0053
         {
             bool Internal(CustomAttributeData attribute)
             {
-                var output = Instances.AttributeOperator.Is_TypeNamespacedTypeName(
+                var output = Instances.AttributeOperator.Is_AttributeType_NamespacedTypeName(
                     attribute,
                     attributeTypeNamespacedTypeName);
 

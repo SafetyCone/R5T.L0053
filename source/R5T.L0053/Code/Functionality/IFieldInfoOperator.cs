@@ -3,32 +3,34 @@ using System.Linq;
 using System.Reflection;
 
 using R5T.T0132;
+using R5T.T0143;
 
 
 namespace R5T.L0053
 {
+    /// <inheritdoc cref="F10Y.L0000.IFieldInfoOperator" path="/summary"/>
+    /// <remarks>
+    /// <inheritdoc cref="Documentation.Project_SelfDescription" path="/summary"/>
+    /// </remarks>
     [FunctionalityMarker]
-    public partial interface IFieldInfoOperator : IFunctionalityMarker
+    public partial interface IFieldInfoOperator : IFunctionalityMarker,
+        F10Y.L0000.IFieldInfoOperator
     {
-        public Type Get_DeclaringType(FieldInfo fieldInfo)
-        {
-            var output = fieldInfo.DeclaringType;
-            return output;
-        }
+#pragma warning disable IDE1006 // Naming Styles
 
-        public Type Get_FieldType(FieldInfo fieldInfo)
-        {
-            var output = fieldInfo.FieldType;
-            return output;
-        }
+        [Ignore]
+        F10Y.L0000.IFieldInfoOperator _F10Y_L0000 => F10Y.L0000.FieldInfoOperator.Instance;
 
-        public string Get_FieldName(FieldInfo fieldInfo)
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        string Get_FieldName(FieldInfo fieldInfo)
         {
             var output = fieldInfo.Name;
             return output;
         }
 
-        public FieldInfo Get_FieldOf(
+        FieldInfo Get_FieldOf(
             Type type,
             string fieldName)
         {
@@ -39,7 +41,7 @@ namespace R5T.L0053
             return method;
         }
 
-        public FieldInfo Get_FieldOf<T>(string fieldName)
+        FieldInfo Get_FieldOf<T>(string fieldName)
         {
             var type = Instances.TypeOperator.Get_TypeOf<T>();
 
@@ -50,13 +52,13 @@ namespace R5T.L0053
             return output;
         }
 
-        public string Get_Name(FieldInfo field)
+        string Get_Name(FieldInfo field)
         {
             var output = field.Name;
             return output;
         }
 
-        public bool Is_Name(
+        bool Is_Name(
             FieldInfo field,
             string fieldName)
         {
