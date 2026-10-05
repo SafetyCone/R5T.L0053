@@ -28,29 +28,7 @@ namespace R5T.L0053
             params string[] endings)
             => this.Ends_WithAny(
                 @string,
-                endings);    
-
-        public string Remove(
-            string @string,
-            char character)
-        {
-            var output = this.Remove_Character(
-                @string,
-                character);
-
-            return output;
-        }
-
-        public string Remove_Character(
-            string @string,
-            char character)
-        {
-            var output = @string
-                .Where(x => x != character)
-                .Get_String();
-
-            return output;
-        }
+                endings);
 
         public IEnumerable<string> Remove_EmptyOrNull(IEnumerable<string> strings)
         {

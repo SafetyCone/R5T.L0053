@@ -30,7 +30,7 @@ namespace R5T.L0053
             XmlWriterSettings settings,
             TextWriter writer)
         {
-            var text = this.DescribeTo_Text(settings);
+            var text = this.Describe_ToText(settings);
 
             return writer.WriteAsync(text);
         }
@@ -39,7 +39,7 @@ namespace R5T.L0053
             XmlWriterSettings settings,
             TextWriter writer)
         {
-            var text = this.DescribeTo_Text(settings);
+            var text = this.Describe_ToText(settings);
 
             writer.Write(text);
         }

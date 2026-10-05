@@ -262,18 +262,6 @@ namespace R5T.L0053
             return output;
         }
 
-        /// <summary>
-        /// Is the type a type parameter of a generic type or generic method?
-        /// Note: this tests for whether the type is a <em>parameter</em>, not an argument.
-        /// As the clearest explanation of the difference,
-        /// generic type parameters have names like "T", while generic type arguments have names like "System.Int32".
-        /// </summary>
-        public bool Is_GenericTypeParameter(Type type)
-        {
-            var output = type.IsGenericTypeParameter;
-            return output;
-        }
-
         public bool Is_GenericTypeDefinition(Type type)
         {
             var output = type.IsGenericTypeDefinition;
